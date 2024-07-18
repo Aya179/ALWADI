@@ -1,0 +1,130 @@
+﻿@model IEnumerable<ALWADI.Models.Point>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<div class="row" style="margin-top:10px;">
+    <div class="col-12">
+
+
+        <div class="card">
+
+            <div class="card-header">
+                <h3 class="card-title">
+                    نقاط الإعلان
+
+
+                </h3>
+                @*<a class="float-left" asp-action="Create">
+                    <i class="fa fa-plus"></i>
+                    إنشاء معلن جديد
+
+                </a>*@
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped" id="dep_table">
+
+                        <thead style="white-space: nowrap;">
+                            <tr>
+                                <th style="text-align: center;">
+                                    @Html.DisplayNameFor(model => model.advertismentNavigation.image)
+                                </th>
+                                <th style="text-align: center;">
+                                    @Html.DisplayNameFor(model => model.advertismentNavigation.clientNavigation.clientname)
+                                </th>
+                                <th style="text-align: center;">
+                                    @Html.DisplayNameFor(model => model.value)
+                                </th>
+                                
+
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td style="text-align: center;">
+                                        @*<img src="~/3.jpg" border=3 height=100 width=300 />*@
+                                        @*@Html.DisplayFor(modelItem => item.advertismentNavigation.image)*@
+
+                                        @if (item.advertismentNavigation.image == null)
+                                        {
+
+                                            <img class="table-avatar" src="~/3.jpg" style="width: 2.5rem; border-radius: 50%; vertical-align: middle;" />
+
+                                           
+
+                                        }
+                                        else
+                                        {
+                                            
+
+                                                <img class="table-avatar" src="@ViewBag.ImageDataUrl" style="width: 2.5rem; border-radius: 30%; vertical-align: middle;"  />
+
+                                               
+                                        }
+
+                                    </td>
+                                    <td style="text-align: center;">
+                                        @Html.DisplayFor(modelItem => item.advertismentNavigation.clientNavigation.clientname)
+                                    </td>
+                                    <td style="text-align: center;">
+                                        @Html.DisplayFor(modelItem => item.value)
+                                    </td>
+                                    
+
+                                    <td style="text-align: center; white-space: nowrap;">
+                                        <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.id">تعديل</a> |
+                                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.id">حذف</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@section Scripts {
+    <script>
+        $(function () {
+            $('#dep_table').DataTable({
+                "lengthMenu": [[5, 10, 15, 20, 25, -1], [5, 10, 15, 20, 25, "All"]],
+                "responsive": true,
+                "autoWidth": true,
+                "language": {
+                    "sProcessing": "جارٍ التحميل...",
+                    "sLengthMenu": "أظهر _MENU_ مدخلات",
+                    "sZeroRecords": "لم يتم العثور على أية نتائج",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sInfoPostFix": "",
+                    "sSearch": "البحث:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+                }
+            });
+        });</script>
+}
+

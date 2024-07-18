@@ -1,0 +1,57 @@
+﻿
+<div class="card card-primary border-0">
+    <div class="card-header">
+
+
+        <div class="d-inline">
+            <a asp-controller="Settings" asp-action="Index"><i class="fa fa-arrow-left fa-lg"></i> </a>
+        </div>
+
+    </div>
+
+<form asp-action="addfixedimg1" enctype="multipart/form-data" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="card-body">
+        <div class="row justify-content-center">
+            <div class="col-5">
+
+
+                <div class="form-group">
+                    <label a class="control-label"> تعديل صورة الأشعة </label>
+                    <input  class="form-control" type="file" name="img1" id="img1" multiple="multiple" />
+
+                </div> 
+                <div class="form-group">
+                    <label a class="control-label">تعديل صورة التجميل</label>
+                    <input  class="form-control" type="file" name="img2" id="img2" multiple="multiple" />
+
+                </div> 
+                <div class="form-group">
+                    <label a class="control-label">تعديل صورة الصيدلة</label>
+                    <input  class="form-control" type="file" name="img3" id="img3" multiple="multiple" />
+
+                </div>
+                <div class="form-group">
+                    <label a class="control-label">تعديل صورة العيادات</label>
+                    <input  class="form-control" type="file" name="img4" id="img4" multiple="multiple" />
+
+                </div>
+                </div>
+
+              
+
+
+            </div>
+
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-outline-primary">
+                <i class="fa fa-plus"></i>
+                إنشاء
+            </button>
+
+
+        </div>
+
+</form>
+</div>

@@ -1,0 +1,143 @@
+﻿@model IEnumerable<ALWADI.Models.Department>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<div class="row" style="margin-top:10px;">
+    <div class="col-12">
+
+
+        <div class="card">
+
+            <div class="card-header">
+                <h3 class="card-title">
+                    الأقسام
+
+
+                </h3>
+                <a class="float-left" asp-action="Create">
+                    <i class="fa fa-plus"></i>
+                    إنشاء قسم جديد
+
+                </a>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped" id="dep_table">
+                        <thead>
+                            <tr>
+
+                                <th style="text-align: right;">
+                                    @Html.DisplayNameFor(model => model.arrangement)
+                                </th>
+                                <th style="text-align: right;">
+                                    @Html.DisplayNameFor(model => model.DepartmentName)
+                                </th>
+                                <th style="text-align: right;">
+                                    @Html.DisplayNameFor(model => model.DeptType)
+                                </th>
+
+                                <th style="text-align: right;">
+                                    @Html.DisplayNameFor(model => model.DepartmentDescription)
+                                </th>
+                                @*<th style="text-align: right;">
+            @Html.DisplayNameFor(model => model.DepartmentImg)
+        </th>*@
+
+                                <th style="text-align: right;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                    @if (item.arrangement == null)
+                                    {
+                                        <td style="text-align: center; white-space: nowrap;">
+                                            -
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td style="text-align: center; white-space: nowrap;">
+                                            @Html.DisplayFor(modelItem => item.arrangement)
+                                        </td>
+                                    }
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DepartmentName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DeptType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DepartmentDescription)
+                                </td>
+
+                                @*<td>
+            @if (item.DepartmentImg != null)
+            {<img class="table-avatar" src="@ViewBag.ImageDataUrl" style="width: 4.5rem; border-radius: 30%; vertical-align: middle;" />}
+
+        </td>*@
+
+                                <td>
+
+                                    <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.DepartmentId">تعديل</a> |
+                                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.DepartmentId" style="background-color:green;">تفاصيل</a> |
+                                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.DepartmentId">حذف</a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+@section Scripts {
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+
+
+
+<script>
+
+
+        $(document).ready(function () {
+$('#dep_table').DataTable({
+                "lengthMenu": [[5, 10, 15, 20, 25, -1], [5, 10, 15, 20, 25, "All"]],
+                "responsive": true,
+                "autoWidth": true,
+                "language": {
+                    "sProcessing": "جارٍ التحميل...",
+                    "sLengthMenu": "أظهر _MENU_ مدخلات",
+                    "sZeroRecords": "لم يتم العثور على أية نتائج",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sInfoPostFix": "",
+                    "sSearch": "البحث:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+                }
+            });        });
+</script>
+}

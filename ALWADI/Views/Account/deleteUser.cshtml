@@ -1,0 +1,29 @@
+﻿<h1>@ViewBag.u</h1>
+
+
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card card-danger border-0">
+            <div class="card-header">
+                <h3 class="card-title">هل أنت متأكد من حذف المستخدم التالي؟</h3>
+
+
+                <div class="d-inline">
+                    <a asp-action="allUsers"><i class="fa fa-arrow-left fa-lg"></i> </a>
+                </div>
+
+            </div>
+
+            <form asp-action="deleteUserAction" asp-route-userName="@ViewBag.u">
+               
+                <div class="card-body">
+                    <input type="submit" value="حذف" class="btn btn-danger" />
+                </div>
+               
+            </form>
+
+        </div>
+    </div>
+</div>

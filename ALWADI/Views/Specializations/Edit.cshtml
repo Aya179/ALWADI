@@ -1,0 +1,95 @@
+﻿@model ALWADI.Models.Specialization
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card card-secondary border-0">
+            <div class="card-header " style="background-color: #17a2b8; ">
+                <h3 class="card-title">تعديل</h3>
+
+
+                <div class="d-inline">
+                    <a asp-action="Index"><i class="fa fa-arrow-left fa-lg"></i> </a>
+                </div>
+
+            </div>
+
+            <form asp-action="Edit" enctype="multipart/form-data" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="SpecializationId" />
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-5 mx-auto">
+                            <div class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="SpecializationName" class="control-label">@Html.DisplayNameFor(model => model.SpecializationName)</label>
+                                <input asp-for="SpecializationName" class="form-control" />
+                                <span asp-validation-for="SpecializationName" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="SpecializationDescription" class="control-label">@Html.DisplayNameFor(model => model.SpecializationDescription)</label>
+                                <input asp-for="SpecializationDescription" class="form-control" />
+                                <span asp-validation-for="SpecializationDescription" class="text-danger"></span>
+                            </div>
+                            
+                           
+
+
+
+                        </div>
+                        <div class="col-5">
+
+                            
+                            <div class="form-group" hidden>
+                                <label asp-for="SessionDuration" class="control-label">@Html.DisplayNameFor(model => model.SessionDuration)</label>
+                                <input class="form-control" asp-for="SessionDuration" type="text" />
+                                <span asp-validation-for="SessionDuration" class="text-danger"></span>
+                            </div>
+
+                           
+                            
+
+                               <div class="form-group ">
+                                <label asp-for="Specializationmg" class="control-label"> @Html.DisplayNameFor(model => model.Specializationmg)</label>
+                                <input class="form-control" type="file" name="Specializationmg" id="Specializationmg" multiple="multiple" />
+
+
+                                <span asp-validation-for="Specializationmg" class="text-danger"></span>
+                            </div>
+                           
+                           
+
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-group justify-content-center  ">
+                                <label asp-for="DepNum" class="control-label"> @Html.DisplayNameFor(model => model.DepNum)</label>
+                                <select asp-for="DepNum" asp-items="ViewBag.DepNum" class="form-control"></select>
+                                <span asp-validation-for="DepNum" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-primary">
+                        <i class="fa fa-plus"></i>
+                        حفظ
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

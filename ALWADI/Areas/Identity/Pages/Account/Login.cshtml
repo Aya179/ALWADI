@@ -1,0 +1,95 @@
+﻿@page
+@model ALWADI.Areas.Identity.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Log in";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="icon" href="~/images/logo.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AL-WADI</title>
+
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
+    <link href="~/AdminStyle/css/styles.css" asp-append-version="true" rel="stylesheet" />
+    <link href="~/css/loginStyle.css" asp-append-version="true" rel="stylesheet" />
+
+    
+</head>
+<body>
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+    <section class="vh-100">
+        <div class="container-fluid h-custom">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-9 col-lg-6 col-xl-5">
+                    <img src="~/ALWADI_LOGO.jpg" class="img-fluid" alt="Sample image" />
+                        
+                </div>
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                            <form method="post" id="account">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                      
+
+                        <div class="divider d-flex align-items-center my-4">
+                            <p class="text-center fw-bold mx-3 mb-0">Log in</p>
+                        </div>
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form3Example3" asp-for="Input.Email"></label>
+                            <input asp-for="Input.Email" type="email" id="form3Example3" class="form-control form-control-lg"
+                                   placeholder="name@example.com"   />
+                            
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-3">
+                            <label asp-for="Input.Password" class="form-label" for="form3Example4"></label>
+                            <input asp-for="Input.Password" type="password" id="form3Example4" class="form-control form-control-lg"
+                                   placeholder="Enter password" />
+                            
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <!-- Checkbox -->
+                            <div class="form-check mb-0">
+                                <label class="form-check-label" for="form2Example3">
+                                    Remember me ?
+                                        </label> &nbsp;&nbsp;
+                                <input asp-for="Input.RememberMe"  class="form-check-input me-2" type="checkbox"  id="form2Example3" />
+                                
+                            </div>
+                        </div>
+
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                                    <button type="submit" class="btn btn-primary btn-lg"
+                                    style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                                Login
+                            </button>
+                            
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</div>
+
+
+</body>
+
+</html>
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

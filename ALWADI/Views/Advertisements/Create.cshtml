@@ -1,0 +1,108 @@
+﻿@model ALWADI.Models.Advertisement
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row" style="margin-top:10px">
+    <div class="col-12">
+
+        <div class="card card-primary border-0">
+            <div class="card-header">
+                <h3 class="card-title">إنشاء إعلان</h3>
+
+
+                <div class="d-inline">
+                    <a asp-action="Index"><i class="fa fa-arrow-left fa-lg"></i> </a>
+                </div>
+
+            </div>
+
+            <form asp-action="Create" enctype="multipart/form-data" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-5">
+                            <div class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="client_id" class="control-label"></label>
+                                <select asp-for="client_id" class="form-control" asp-items="ViewBag.client_id"></select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="Ads_category_id" class="control-label"></label>
+                                <select asp-for="Ads_category_id" class="form-control" asp-items="ViewBag.Ads_category_id"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="URL" class="control-label">@Html.DisplayNameFor(model => model.URL)</label>
+                                <input asp-for="URL" class="form-control" type="url" />
+                                <span asp-validation-for="URL" class="text-danger"></span>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="col-5">
+
+
+
+                            <div class="form-group">
+                                <label asp-for="Ads_StartDate" class="control-label">@Html.DisplayNameFor(model => model.Ads_StartDate)</label>
+                                <input class="form-control" asp-for="Ads_StartDate" type="date" />
+                                <span asp-validation-for="Ads_StartDate" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for=" Ads_place" class="control-label">@Html.DisplayNameFor(model => model.Ads_place)</label>
+                                <select asp-for="Ads_place" class="form-control">
+                                    <option value="بداية الصفحة">بدية الصفحة</option>
+                                    <option value="منتصف الصفحة">منتصف الصفحة</option>
+                                    <option value="آخر الصفحة">آخر الصفحة</option>
+
+                                </select>
+                                <span asp-validation-for=" Ads_place" class="text-danger"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label asp-for="Ads_profit" class="control-label"> @Html.DisplayNameFor(model => model.Ads_profit)</label>
+                                <input asp-for="Ads_profit" class="form-control" type="text" />
+                                <span asp-validation-for="Ads_profit" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group ">
+                                <label asp-for="image" class="control-label"> @Html.DisplayNameFor(model => model.image)</label>
+                                <input asp-for="image" class="form-control" type="file" name="file1" id="file1" multiple="multiple" />
+
+
+                                <span asp-validation-for="image" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-primary">
+                        <i class="fa fa-plus"></i>
+                        إنشاء
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@if (Model != null)
+{
+    <script type="text/javascript">
+            $(function () {
+                alert("Inserted location: " + @Model.id);
+            });
+    </script>
+}

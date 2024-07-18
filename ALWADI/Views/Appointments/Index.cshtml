@@ -1,0 +1,189 @@
+﻿
+@model IEnumerable<ALWADI.Models.Appointment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<meta http-equiv="refresh" content="180" />
+<div class="row" style="margin-top:10px;">
+    <div class="col-12">
+
+
+        <div class="card">
+
+            <div class="card-header">
+                <h3 class="card-title">
+                    المواعيد
+
+
+                </h3>
+                <a class="float-left" asp-action="Create">
+                    <i class="fa fa-plus"></i>
+                    إنشاء موعد
+
+                </a>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped" id="dep_table">
+                        <thead style="white-space: nowrap;">
+                            <tr>
+                                <th style="text-align: right;">
+                                    @Html.DisplayNameFor(model => model.Patient)
+                                </th>
+
+                                <th style="text-align: right;">
+                                    @Html.DisplayNameFor(model => model.Doctor)
+                                </th>
+                                <th style="text-align: right;">
+                                    @Html.DisplayNameFor(model => model.StartTime)
+                                </th>
+
+                                <th style="text-align: right;">
+                                    @Html.DisplayNameFor(model => model.EndTime)
+                                </th>
+                                <th style="text-align: right;">
+                                    @Html.DisplayNameFor(model => model.Date)
+                                </th>
+
+                                <th style="text-align: right;">
+                                    @Html.DisplayNameFor(model => model.Note)
+                                </th>
+
+                                <th style="text-align: right;">
+                                    @Html.DisplayNameFor(model => model.IsReversed)
+                                </th>
+
+
+                                <th style="text-align: right;">
+                                    @Html.DisplayNameFor(model => model.IsApproved)
+                                </th>
+
+                                <th style="text-align: right;  width:70%;">
+                                    @Html.DisplayNameFor(model => model.IsDone)
+                                </th>
+                                <th style="text-align: right;  width:70%;">
+                                    @Html.DisplayNameFor(model => model.Rating)
+                                </th>
+
+                                <th style="text-align: right; width: 70%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td style="text-align: center;">
+                                    @Html.DisplayFor(modelItem => item.PatientNavigation.PatientName)
+                                </td>
+                                <td style="text-align: center;">
+                                    @Html.DisplayFor(modelItem => item.DoctorNavigation.DoctorName)
+                                </td>
+                                <td style="text-align: center;">
+
+                                    @Html.DisplayFor(modelItem => item.StartTime.Value.TimeOfDay)
+                                </td>
+
+                                <td style="text-align: center;">
+
+                                    @Html.DisplayFor(modelItem => item.EndTime.Value.TimeOfDay)
+                                </td>
+
+                                <td style="text-align: center;">
+
+                                    @{
+                                        var date = item.Date.Value.Date.ToShortDateString();
+                                    }
+                                    @Html.DisplayFor(modelItem => date)
+                                    @*@Html.DisplayFor(modelItem => item.Date.Value.Date)*@
+                                </td>
+
+                                <td style="text-align: center;">
+                                    @Html.DisplayFor(modelItem => item.Note)
+                                </td>
+
+                                <td style="text-align: center;">
+                                    @if (item.IsReversed == true)
+                                    {
+                                        <p>محجوز</p>
+                                    }
+                                    else
+                                    { <p> غير محجوز</p>}
+
+                                    @*@Html.DisplayFor(modelItem => item.IsReversed)*@
+
+                                </td>
+
+                                <td style="text-align: center;">
+                                    @*@Html.DisplayFor(modelItem => item.IsApproved)*@
+
+                                    @if (item.IsApproved == true)
+                                    {
+                                        <p>تم</p>
+                                    }
+                                    else
+                                    { <p> -</p>}
+                                </td>
+
+                                <td style="text-align: center;">
+                                    @if (item.IsDone == true)
+                                    {
+                                        <p>انتهى الموعد</p>
+                                    }
+                                    else
+                                    { <p> -</p>}
+                                    @*@Html.DisplayFor(modelItem => item.IsDone)*@
+                                </td>
+                                <td style="text-align: center;">
+                                    @Html.DisplayFor(modelItem => item.Rating)
+                                </td>
+
+                                <td style="text-align: center; white-space: nowrap; ">
+
+                                    <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.AppointmentId">تعديل</a> |
+                                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.AppointmentId" style="background-color:green;">تفاصيل</a> |
+                                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.AppointmentId">حذف</a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Scripts {
+    <script>
+        $(function () {
+            $('#dep_table').DataTable({
+                "lengthMenu": [[5, 10, 15, 20, 25, -1], [5, 10, 15, 20, 25, "All"]],
+                "responsive": true,
+                "autoWidth": true,
+                
+                "language": {
+                    "sProcessing": "جارٍ التحميل...",
+                    "sLengthMenu": "أظهر _MENU_ مدخلات",
+                    "sZeroRecords": "لم يتم العثور على أية نتائج",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sInfoPostFix": "",
+                    "sSearch": "البحث:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+                }
+            });
+        });</script>
+}
+
+

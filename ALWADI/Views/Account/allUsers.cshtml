@@ -1,0 +1,207 @@
+﻿<div class="card-header">
+    <h3 class="card-title">
+        الموظفين
+
+
+    </h3>
+    <a class="float-left" href="/Identity/Account/Register">
+        <i class="fa fa-plus"></i>
+        إنشاء موظف جديد
+
+    </a>
+</div>
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-striped" id="dep_table">
+
+            <thead style="white-space: nowrap;">
+                <tr>
+                    <th style="text-align: center;">
+                        الاسم
+                    </th>
+                    <th style="text-align: center;">
+                       الايميل
+                    </th>
+                    <th>
+
+                    </th>
+
+
+
+
+
+                </tr>
+            </thead>
+            <tbody id="table">
+            </tbody>
+
+
+
+        </table>
+
+    </div>
+</div>
+<div class="card-header">
+    <h3 class="card-title">
+        السماحيات
+
+
+    </h3>
+    <a class="float-left" href="/Account/addRole">
+        <i class="fa fa-plus"></i>
+        إنشاء سماحية جديدة
+
+    </a>
+</div>
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-striped" id="dep_table">
+
+            <thead style="white-space: nowrap;">
+                <tr>
+                    <th style="text-align: center;">
+                        السماحية
+                    </th>
+                   
+                    <th>
+
+                    </th>
+
+
+
+
+
+                </tr>
+            </thead>
+            <tbody id="table1">
+            </tbody>
+
+
+
+        </table>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $('#dep_table').DataTable({
+                "lengthMenu": [[5, 10, 15, 20, 25, -1], [5, 10, 15, 20, 25, "All"]],
+                "responsive": true,
+                "autoWidth": true,
+                "language": {
+                    "sProcessing": "جارٍ التحميل...",
+                    "sLengthMenu": "أظهر _MENU_ مدخلات",
+                    "sZeroRecords": "لم يتم العثور على أية نتائج",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sInfoPostFix": "",
+                    "sSearch": "البحث:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+                }
+            });
+        });</script>
+
+
+<script>
+
+
+   
+function show()
+{
+    var url = document.URL;
+            var stuff = url.split('/');
+            var id = stuff[stuff.length - 1];
+   // alert(id);
+            $.get("/Account/allUsersapi", function (data) {
+
+              var table_tr="";
+
+         
+             for (var i = 0; i < data.length; i++) {
+                 
+                  table_tr+=`
+                     <tr>
+                              <td style="text-align: center;"> `+ data[i].userName + ` </td>
+                               <td  style="text-align: center;">` + data[i].userName + `  </td>
+
+                                                                                                <td  style="text-align: center;"><a class="btn btn-danger btn-sm" asp-controller="Account" href="/Account/deleteUser/?userName=` + data[i].userName + `">حذف</a>  </td>
+
+
+                             
+
+                       </tr>`;
+                
+                  }
+                  
+                
+                  
+                
+         document.getElementById('table').innerHTML = table_tr;
+
+             
+                });
+}
+
+
+        function show1() {
+            var url = document.URL;
+            var stuff = url.split('/');
+            var id = stuff[stuff.length - 1];
+            // alert(id);
+            $.get("/Account/listofrole", function (data) {
+
+                var table_tr = "";
+
+
+                for (var i = 0; i < data.length; i++) {
+
+                    table_tr += `
+                             <tr>
+                                              <td style="text-align: center;"> `+ data[i].name + ` </td>
+                                       
+
+                                               
+
+
+
+
+                               </tr>`;
+
+                }
+
+
+
+
+                document.getElementById('table1').innerHTML = table_tr;
+
+
+            });
+        }
+
+
+
+       
+
+$(document).ready(function() {
+  
+       
+    show();
+    show1();
+
+
+});
+</script>
+
+
+}

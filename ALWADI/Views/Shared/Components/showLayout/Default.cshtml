@@ -1,0 +1,21 @@
+﻿@model IEnumerable<ALWADI.Models.Department>
+
+
+
+
+
+<li class="nav-item has-treeview menu-open">
+    <a class="nav-link" asp-controller="Departments" asp-action="AllDepartment">
+            كل الأقسام
+        </a>
+       
+    </li>
+@foreach (var item in Model)
+{
+    <li class="nav-item has-treeview menu-open">
+        <a class="nav-link" asp-controller="Home" asp-action="Test" asp-route-id="@item.DepartmentId">
+            @item.DepartmentName
+        </a>
+       
+    </li>
+}

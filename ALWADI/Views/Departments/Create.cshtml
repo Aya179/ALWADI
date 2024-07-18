@@ -1,0 +1,122 @@
+﻿
+
+
+
+@model ALWADI.Models.Department
+
+@{
+    ViewData["Title"] = "Create";
+}
+<html>
+<head>
+</head>
+<body>
+    <div class="row" style="margin-top:10px">
+        <div class="col-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">إنشاء قسم </h3>
+
+                    <div class="d-inline">
+                        <a asp-action="AllDepartment"><i class="fa fa-arrow-left fa-lg"></i> </a>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form" asp-action="Create" enctype="multipart/form-data" method="post">
+                    <div class="card-body">
+                        <div class="row ">
+                            <div class="col-5">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" asp-for="DepartmentName"></label>
+                                    <input asp-for="DepartmentName" class="form-control" placeholder=" الاسم ">
+                                    <span asp-validation-for="DepartmentName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" asp-for="DeptType"></label>
+                                    <input asp-for="DeptType" class="form-control" placeholder=" نوع العيادة (تجميل - عيادة) ">
+                                    <span asp-validation-for="DeptType" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1" asp-for="DepartmentDescription"></label>
+                                    <textarea asp-for="DepartmentDescription" id="inputDescription" class="form-control" rows="4"></textarea>
+                                    <span asp-validation-for="DepartmentDescription" class="text-danger"></span>
+                                </div>
+                                <div class="form-group justify-content-center ">
+                                    <label asp-for="arrangement" class="control-label"> @Html.DisplayNameFor(model => model.arrangement)</label>
+                                    <input asp-for="arrangement" id="valueInput" class="form-control" min="0" type="number" onchange="checkValue()" required />
+                                    
+                                    <span asp-validation-for="arrangement" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label asp-for="DepartmentImg" class="control-label"> @Html.DisplayNameFor(model => model.DepartmentImg)</label>
+                                    <input asp-for="DepartmentImg" class="form-control" type="file" name="file1" id="file1" multiple="multiple" />
+
+
+                                    <span asp-validation-for="DepartmentImg" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-outline-primary">
+                            <i class="fa fa-plus"></i>
+                            إنشاء
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script>
+
+
+
+        function checkValue() {
+            // Get the value from the input field
+            var value = document.getElementById("valueInput").value;
+            
+
+            // Make an API request to the CheckValue action method
+            $.get("/Departments/CheckValue", {
+
+                value: value,
+            }, function (data) {
+
+                //if (data == "Value inserted successfully"){
+                //    alert("you can insert");
+                //}
+                console.log(data);
+                if (data == "found") {
+                    document.getElementById("valueInput").value = "";
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'هذا الترتيب موجود مسبقا',
+
+
+                    });
+
+                }
+
+
+            });
+        }
+    </script>
+
+}
+

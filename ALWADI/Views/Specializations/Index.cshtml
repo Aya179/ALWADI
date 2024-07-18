@@ -1,0 +1,141 @@
+﻿@model IEnumerable<ALWADI.Models.Specialization>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row" style="margin-top:10px;">
+    <div class="col-12">
+
+
+        <div class="card">
+
+            <div class="card-header">
+                <h3 class="card-title">
+                    التخصصات
+
+
+                </h3>
+                <a class="float-left" asp-action="Create">
+                    <i class="fa fa-plus"></i>
+                    إنشاء تخصص جديد
+
+                </a>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped" id="dep_table">
+                        <thead>
+                            <tr>
+                                
+                                <th style="text-align: right;">
+                                    @Html.DisplayNameFor(model => model.SpecializationName)
+                                </th>
+
+                                <th style="text-align: right;">
+                                    @Html.DisplayNameFor(model => model.SpecializationDescription)
+                                </th>
+                                @*<th style="text-align: right;">
+                                    @Html.DisplayNameFor(model => model.SessionDuration)
+                                </th>*@
+
+                                @*<th style="text-align: right;">
+                                    @Html.DisplayNameFor(model => model.Specializationmg)
+                                </th>*@
+                                <th style="text-align: right;">
+                                    @Html.DisplayNameFor(model => model.DepNum)
+                                </th>
+                                
+
+                                
+
+                                
+
+                                <th style="text-align: right; width: 70%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    
+
+                                    <td style="text-align: center;">
+                                        @Html.DisplayFor(modelItem => item.SpecializationName)
+                                    </td>
+                                    <td style="text-align: center;">
+                                        @Html.DisplayFor(modelItem => item.SpecializationDescription)
+                                    </td>
+                                    @*<td style="text-align: center;">
+                                        @Html.DisplayFor(modelItem => item.SessionDuration)
+                                    </td>*@
+
+                                    @*<td style="text-align: center;">
+                                        @Html.DisplayFor(modelItem => item.Specializationmg)
+                                    </td>*@
+
+                                    <td style="text-align: center; white-space: nowrap;">
+                                        @Html.DisplayFor(modelItem => item.DepNumNavigation.DepartmentName)
+                                    </td> 
+                                   
+                                        
+                                   
+                                    
+
+                                   
+                                    <td style="text-align: center; white-space: nowrap; ">
+
+                                        <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.SpecializationId">تعديل</a> |
+                                        <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.SpecializationId" style="background-color:green;">تفاصيل</a> |
+                                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.SpecializationId">حذف</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Scripts {
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+
+
+
+    <script>
+
+
+        $(document).ready(function () {
+            $('#dep_table').DataTable({
+                "lengthMenu": [[5, 10, 15, 20, 25, -1], [5, 10, 15, 20, 25, "All"]],
+                "responsive": true,
+                "autoWidth": true,
+                "language": {
+                    "sProcessing": "جارٍ التحميل...",
+                    "sLengthMenu": "أظهر _MENU_ مدخلات",
+                    "sZeroRecords": "لم يتم العثور على أية نتائج",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sInfoPostFix": "",
+                    "sSearch": "البحث:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+                }
+            });
+        });
+    </script>
+}

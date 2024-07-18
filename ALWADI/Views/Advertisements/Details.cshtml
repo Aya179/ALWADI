@@ -1,0 +1,110 @@
+﻿@model ALWADI.Models.Advertisement
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row" style="margin-top:10px;">
+    <div class="col-12">
+
+        <div class="card card-success border-0">
+            <div class="card-header">
+                <h3 class="card-title">معلومات الإعلان</h3>
+
+
+                <div class="d-inline">
+                    <a asp-action="Index"><i class="fa fa-arrow-left fa-lg"></i> </a>
+                </div>
+
+            </div>
+
+            <form>
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-5">
+                            <div class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="client_id" class="control-label">@Html.DisplayNameFor(model => model.client_id)</label>
+                                <input class="form-control" asp-for="clientNavigation.clientname" type="text" readonly />
+                                <span asp-validation-for="client_id" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="Ads_category_id" class="control-label">@Html.DisplayNameFor(model => model.Ads_category_id)</label>
+                                <input class="form-control" asp-for="categoryNavigation.category_name" readonly />
+                                <span asp-validation-for="Ads_category_id" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="URL" class="control-label">@Html.DisplayNameFor(model => model.URL)</label>
+                                <input asp-for="URL" class="form-control" readonly  />
+                                <span asp-validation-for="URL" class="text-danger"></span>
+                            </div>
+                            
+
+
+                           
+
+
+
+                        </div>
+                        <div class="col-5">
+
+
+
+
+
+                            <div class="form-group">
+                                <label asp-for="Ads_StartDate" class="control-label">@Html.DisplayNameFor(model => model.Ads_StartDate)</label>
+                                <input class="form-control" asp-for="Ads_StartDate" readonly />
+                                <span asp-validation-for="Ads_StartDate" class="text-danger"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label asp-for="Ads_place" class="control-label"> @Html.DisplayNameFor(model => model.Ads_place)</label>
+                                <input asp-for="Ads_place" class="form-control" readonly />
+                                <span asp-validation-for="Ads_place" class="text-danger"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label asp-for=" Ads_profit" class="control-label"> @Html.DisplayNameFor(model => model.Ads_profit)</label>
+                                <input asp-for=" Ads_profit" class="form-control" readonly />
+                                <span asp-validation-for=" Ads_profit" class="text-danger"></span>
+                            </div>
+
+                            
+                            @if (Model.image == null)
+                            {
+
+                                <label asp-for="image" class="control-label"> @Html.DisplayNameFor(model => model.image)</label>
+
+                                <br />
+
+                                <img src="~/3.jpg"
+                                 style="max-width:100px;max-height:100px" />
+
+                            }
+                            else
+                            {
+                                <div class="form-group ">
+                                    <label asp-for="image" class="control-label"> @Html.DisplayNameFor(model => model.image)</label><br />
+                                    @*<input asp-for="DoctorImg" class="form-control" />*@
+
+                                    <img src="@ViewBag.ImageDataUrl" width="300" height="300" style="border-radius: 8px;" />
+
+                                    <span asp-validation-for="image" class="text-danger"></span>
+                                </div>
+                            }
+
+                          
+
+
+                        </div>
+
+                        
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

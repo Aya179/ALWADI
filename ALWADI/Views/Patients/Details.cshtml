@@ -1,0 +1,124 @@
+﻿@model ALWADI.Models.Patient
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row" style="margin-top:10px;">
+    <div class="col-12">
+
+        <div class="card card-success border-0">
+            <div class="card-header">
+                <h3 class="card-title">معلومات المريض</h3>
+
+
+                <div class="d-inline">
+                    <a asp-action="Index"><i class="fa fa-arrow-left fa-lg"></i> </a>
+                </div>
+
+            </div>
+
+            <form>
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-5">
+                            <div class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="PatientName" class="control-label">@Html.DisplayNameFor(model => model.PatientName)</label>
+                                <input class="form-control" asp-for="PatientName" type="text" readonly />
+                                <span asp-validation-for="PatientName" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="PatientPhone" class="control-label">@Html.DisplayNameFor(model => model.PatientPhone)</label>
+                                <input class="form-control" asp-for="PatientPhone" readonly/>
+                                <span asp-validation-for="PatientPhone" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PatientAddress" class="control-label">@Html.DisplayNameFor(model => model.PatientAddress)</label>
+                                <input asp-for="PatientAddress" class="form-control" readonly />
+                                <span asp-validation-for="PatientAddress" class="text-danger"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label asp-for="PatientPassword " class="control-label">@Html.DisplayNameFor(model => model.PatientPassword)</label>
+                                <input asp-for="PatientPassword " class="form-control"  readonly/>
+                                <span asp-validation-for="PatientPassword " class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="PatientLocation" class="control-label">@Html.DisplayNameFor(model => model.PatientLocation)</label>
+                                <input class="form-control" asp-for="PatientLocation" type="text" readonly />
+                                <span asp-validation-for="PatientLocation" class="text-danger"></span>
+                            </div>
+
+
+                           
+
+
+
+                        </div>
+                        <div class="col-5">
+
+
+
+
+
+                            <div class="form-group">
+                                <label asp-for=" PatientAge" class="control-label">@Html.DisplayNameFor(model => model.PatientAge)</label>
+                                <input class="form-control" asp-for=" PatientAge" readonly />
+                                <span asp-validation-for=" PatientAge" class="text-danger"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label asp-for="PatientGender" class="control-label"> @Html.DisplayNameFor(model => model.PatientGender)</label>
+                                <input asp-for="PatientGender" class="form-control"readonly />
+                                <span asp-validation-for="PatientGender" class="text-danger"></span>
+                            </div>
+                            <div class="form-group " hidden>
+                                <label asp-for=" ActivationCode" class="control-label"> @Html.DisplayNameFor(model => model.ActivationCode)</label>
+                                <input asp-for=" ActivationCode" class="form-control"  readonly/>
+                                <span asp-validation-for=" ActivationCode" class="text-danger"></span>
+                            </div>
+
+                            @*<div class="form-group ">
+                                <label asp-for="ActivationDate" class="control-label"> @Html.DisplayNameFor(model => model.ActivationDate)</label>
+                                <input asp-for="ActivationDate" class="form-control" readonly />
+                                <span asp-validation-for="ActivationDate" class="text-danger"></span>
+                            </div>*@
+
+                            @if (Model.PatientImg == null)
+                            {
+
+                                <label asp-for="PatientImg" class="control-label"> @Html.DisplayNameFor(model => model.PatientImg)</label><br />
+
+                                <img src="~/3.jpg"
+                                     style="max-width:100px;max-height:100px" />
+
+                            }
+                            else
+                            {
+                                <div class="form-group ">
+                                    <label asp-for="PatientImg" class="control-label"> @Html.DisplayNameFor(model => model.PatientImg)</label><br />
+
+                                    <img src="@ViewBag.ImageDataUrl" style="border: 1px solid #ddd; border-radius: 70px; padding: 5px; width: 300px;" />
+
+                                    <span asp-validation-for="PatientImg" class="text-danger"></span>
+                                </div>
+
+                            }
+
+
+                        </div>
+
+                        
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+

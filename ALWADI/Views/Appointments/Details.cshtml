@@ -1,0 +1,102 @@
+﻿@model ALWADI.Models.Appointment
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row" style="margin-top:10px;">
+    <div class="col-12">
+
+        <div class="card card-success border-0">
+            <div class="card-header">
+                <h3 class="card-title">معلومات الموعد</h3>
+
+
+                <div class="d-inline">
+                    <a asp-action=""><i class="fa fa-arrow-left fa-lg"></i> </a>
+                </div>
+
+            </div>
+
+            <form>
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-5">
+                            <div class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Patient" class="control-label">@Html.DisplayNameFor(model => model.Patient)</label>
+                                <input asp-for="Patient" class="form-control" />
+                                <span asp-validation-for="Patient" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="Doctor" class="control-label">@Html.DisplayNameFor(model => model.Doctor)</label>
+                                <input asp-for="Doctor" class="form-control" />
+                                <span asp-validation-for="Doctor" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="StartTime" class="control-label">@Html.DisplayNameFor(model => model.StartTime)</label>
+                                <input asp-for="Patient" class="form-control" />
+                                <span asp-validation-for="Patient" class="text-danger"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label asp-for="EndTime" class="control-label"> @Html.DisplayNameFor(model => model.EndTime)</label>
+                                <input asp-for="EndTime" class="form-control" />
+                                <span asp-validation-for="EndTime" class="text-danger"></span>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="col-5">
+
+                            <div class="form-group">
+                                <label asp-for="Date" class="control-label">@Html.DisplayNameFor(model => model.Date)</label>
+                                <input asp-for="Date" class="form-control" />
+                                <span asp-validation-for="Date" class="text-danger"></span>
+                            </div>
+
+
+
+                          
+                            <div class="form-group">
+                                <label asp-for="Note" class="control-label">@Html.DisplayNameFor(model => model.Note)</label>
+                                <input asp-for="Note" class="form-control" />
+                                <span asp-validation-for="Note" class="text-danger"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label asp-for="IsReversed" class="control-label"> @Html.DisplayNameFor(model => model.IsReversed)</label>
+                                <input asp-for="IsReversed" class="form-control" />
+                                <span asp-validation-for="IsReversed" class="text-danger"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label asp-for="IsApproved" class="control-label"> @Html.DisplayNameFor(model => model.IsApproved)</label>
+                                <input asp-for="IsApproved" class="form-control" />
+                                <span asp-validation-for="IsApproved" class="text-danger"></span>
+                            </div>
+
+
+
+
+
+                        </div>
+
+                        <div class="col-6 mx-auto">
+                            <div class="form-group justify-content-center ">
+                                <label asp-for="IsDone" class="control-label">@Html.DisplayNameFor(model => model.IsDone)</label>
+                                <input asp-for="IsDone" class="form-control" />
+                                <span asp-validation-for="IsDone" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,362 @@
+﻿@model IEnumerable<ALWADI.Models.AppointmentGet>
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+@if (TempData["AlertMessage"] != null)
+{
+<div class="alert alert-danger">
+
+
+    <strong>
+        تحذير!
+    </strong>@TempData["AlertMessage"]
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="True">&times;</span>
+    </button>
+</div>
+   
+}
+
+
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@ViewBag.count</h3>
+
+
+                        <p>الأقسام</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    <a href="/Departments/AllDepartment" class="small-box-footer">المزيد من المعلومات <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3><sup style="font-size: 20px">@ViewBag.count1</sup></h3>
+
+                        <p>الاختصاصات</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+                    <a href="/Specializations/index" class="small-box-footer">المزيد من المعلومات <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>@ViewBag.count2</h3>
+
+                        <p>الأطباء</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+                    <a href="/Doctors/Index" class="small-box-footer">المزيد من المعلومات <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>@ViewBag.count3</h3>
+
+                        <p>المواعيد</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                    </div>
+                    <a href="/Appointments/Index" class="small-box-footer">المزيد من المعلومات <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+
+            <!-- ./col -->
+        </div>
+
+    </div><!-- /.container-fluid -->
+
+</section>
+
+<div class="row">
+    <!-- Area Chart -->
+    <div class="col-xl-7 col-lg-7">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">
+                     العيادات الأكثر زيارة هذا الشهر
+                </h6>
+               @* <select class="form-control " style="    width: 200px;" aria-invalid="false">
+                    <option>اختر الفرع</option>
+                    <option>فرع 1</option>
+                    <option>فرع 2</option>
+                    <option>فرع 3</option>
+                </select>*@
+
+
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+               @* <div class="chart-area">
+                    <canvas id="myAreaChart"></canvas>
+                </div>*@
+                <div class="chart-pie pt-4 pb-2">
+                    <table class="table table-striped">
+
+                        <thead style="white-space: nowrap;">
+                            <tr>
+                                <th style="text-align: center;" scope="col">
+                                  الاختصاص
+                                </th>
+                                <th style="text-align: center;" scope="col">
+                                   الطبيب
+                                </th>
+                               @* <th style="text-align: center;" scope="col">
+                                    الكمية
+                                </th>
+                                <th style="text-align: center;" scope="col">
+                                    المجموع
+                                </th>*@
+
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody id="table1">
+                        </tbody>
+
+
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie Chart -->
+    <div class="col-xl-5 col-lg-5">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    المرضى الأكثر زيارة للمركز هذا الشهر
+                </h6>
+               @* <select class="form-control " style="width: 200px;" aria-invalid="false" asp-items="ViewBag.customer" onchange="customersearch()">
+                    <option>اختر الزبون</option>
+                    <option>الزبون 1</option>
+                    <option>الزبون 2</option>
+                    <option>الزبون 3</option>
+                </select>*@
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="chart-pie pt-4 pb-2">
+                    <table class="table table-striped">
+
+                        <thead style="white-space: nowrap;">
+                            <tr>
+                                <th style="text-align: center;" scope="col">
+                                    الاسم
+                                </th>
+                                <th style="text-align: center;" scope="col">
+                                    العنوان
+                                </th>
+                                <th style="text-align: center;" scope="col">
+                                    الموقع
+                                </th>
+                                
+
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody id="table2">
+                        </tbody>
+
+
+
+                    </table>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
+ <div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">
+            المواعيد لهذا اليوم الساعة @DateTime.Now.ToShortTimeString()
+        </h6>
+        @* <select class="form-control " style="width: 200px;" aria-invalid="false" asp-items="ViewBag.customer" onchange="customersearch()">
+        <option>اختر الزبون</option>
+        <option>الزبون 1</option>
+        <option>الزبون 2</option>
+        <option>الزبون 3</option>
+        </select>*@
+    </div>
+
+    <div class="card-body">
+<div class="row d-flex align-items-stretch">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-12 col-sm-6 col-md-4 @*d-flex align-items-stretch*@">
+
+            <div class="card bg-light">
+                <div class="card-header text-muted border-bottom-0 text-center">
+                    الموعد
+                </div>
+                <div class="card-body pt-0">
+                    <div class="row">
+                        <div class="col-12 ">
+
+                            <p class="text-muted text-sm"><b>المريض: </b> @item.PatientName </p>
+                            <p class="text-muted text-sm"><b>الطبيب: </b> @item.DoctorName </p>
+                            <p class="text-muted text-sm"><b>الرقم: </b> @item.phone </p>
+                            <p class="text-muted text-sm"><b>القسم: </b> @item.DepartmentName </p>
+
+                            <p class="text-muted text-sm"><b>التاريخ: </b> @item.Date.Value.Date.ToShortDateString() </p>
+                            <p class="text-muted text-sm"><b>التوقيت: </b> @item.StartTime.Value.ToLongTimeString()</p>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+                        <div class="card-footer ">
+                            <div class="text-center">
+                                @*@if (item.ispaid == false)
+
+                            {
+                            <a class="btn btn-sm bg-teal" asp-controller="Home" asp-action="AddPayment" asp-route-id="@item.appId">
+                            ادفع
+                            </a>
+                            }
+                            else
+                            {
+                            <a href="#" class="btn btn-sm btn-primary" disabled>
+                            تم الدفع
+                            </a>
+                            }
+                            *@
+
+                                @if (item.IsDone == false)
+                                {
+                                    <a class="btn btn-sm btn-primary" asp-controller="Home" asp-action="updateIsDone" asp-route-id="@item.appId">
+                                        إنهاءالموعد؟
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="#" class="btn btn-sm btn-primary" disabled>
+                                        تم إنتهاء الموعد
+                                    </a>
+                                }
+
+
+                            </div>
+                        </div>
+
+
+            </div>
+
+        </div>
+
+
+    }
+
+
+</div>
+</div>
+
+</div>
+
+@section Scripts
+
+    {
+    <script>
+        function Top5() {
+            $.get("/Home/TOP5Doctors", function (data) {
+
+                var table_tr = "";
+
+
+                for (var i = 0; i < data.length; i++) {
+
+                    table_tr += `
+                                     <tr>
+                                                              <td style="text-align: center;"> `+ data[i].departmentNumNavigation.departmentName + ` </td>
+                                                       <td style="text-align: center;"> `+ data[i].doctorName + ` </td>
+                                                
+
+
+                                       </tr>`;
+
+                }
+
+                document.getElementById('table1').innerHTML = table_tr;
+
+
+
+
+            });
+
+        }
+
+        function Top5Bra() {
+            $.get("/Home/TOP5Patient", function (data) {
+
+                var table_tr = "";
+
+
+                for (var i = 0; i < data.length; i++) {
+
+                    table_tr += `
+                                     <tr>
+                                                      <td style="text-align: center;"> `+ data[i].patientName + ` </td>
+                                                      <td style="text-align: center;"> `+ data[i].patientPhone + ` </td>
+                                                       <td style="text-align: center;"> `+ data[i].patientAddress + ` </td>
+
+
+                                       </tr>`;
+
+                }
+
+                document.getElementById('table2').innerHTML = table_tr;
+
+
+
+
+            });
+
+        }
+
+        $(document).ready(function () {
+            Top5();
+            Top5Bra();
+
+        });
+
+
+
+    </script>
+      }

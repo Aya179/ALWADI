@@ -1,0 +1,161 @@
+﻿@model ALWADI.Models.Doctor
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="row" style="margin-top:10px;">
+    <div class="col-12">
+
+        <div class="card card-success border-0">
+            <div class="card-header">
+                <h3 class="card-title">معلومات الطبيب</h3>
+
+
+                <div class="d-inline">
+                    <a asp-action="Index"><i class="fa fa-arrow-left fa-lg"></i> </a>
+                </div>
+
+            </div>
+
+            <form>
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-5">
+                            <div class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="DoctorName" class="control-label">@Html.DisplayNameFor(model => model.DoctorName)</label>
+                                <input asp-for="DoctorName" class="form-control"  readonly/>
+                                <span asp-validation-for="DoctorName" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="DoctorAddrress" class="control-label">@Html.DisplayNameFor(model => model.DoctorAddrress)</label>
+                                <input asp-for="DoctorAddrress" class="form-control" readonly />
+                                <span asp-validation-for="DoctorAddrress" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DoctorPhone" class="control-label">@Html.DisplayNameFor(model => model.DoctorPhone)</label>
+                                <input asp-for="DoctorPhone" class="form-control"  readonly/>
+                                <span asp-validation-for="DoctorPhone" class="text-danger"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label asp-for="DoctorEmail" class="control-label"> @Html.DisplayNameFor(model => model.DoctorEmail)</label>
+                                <input asp-for="DoctorEmail" class="form-control" readonly />
+                                <span asp-validation-for="DoctorEmail" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group justify-content-center ">
+                                <label asp-for="DoctorSpecialization" class="control-label">@Html.DisplayNameFor(model => model.DoctorSpecialization):</label>
+                               
+                                @foreach (var item in ViewBag.sp) 
+                                {
+
+                                   <h6>
+                                    @item.Specialization.SpecializationName   
+                                    </h6>
+                                    
+                                }
+                               
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="col-5">
+
+                           
+
+
+
+
+
+                            @*<div class="form-group justify-content-center">
+            <label class="control-label">الجنس</label>
+            <select class="form-control">
+                <option value="">ذكر</option>
+                <option value="">أنثى</option>
+
+            </select>
+            <span class="text-danger"></span>
+
+        </div>*@
+                            <div class="form-group">
+                                <label asp-for="DoctorCertificate" class="control-label">@Html.DisplayNameFor(model => model.DoctorCertificate)</label>
+                                <input asp-for="DoctorCertificate" class="form-control" readonly />
+                                <span asp-validation-for="DoctorCertificate" class="text-danger"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label asp-for="WorkExperience" class="control-label"> @Html.DisplayNameFor(model => model.WorkExperience)</label>
+                                <input asp-for="WorkExperience" class="form-control" readonly />
+                                <span asp-validation-for="WorkExperience" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Descreption" class="control-label">@Html.DisplayNameFor(model => model.Descreption)</label>
+                                <textarea asp-for="Descreption" class="form-control" readonly></textarea>
+                            </div>
+                            @if (Model.DoctorImg == null)
+                            {
+
+                                <label asp-for="DoctorImg" class="control-label"> @Html.DisplayNameFor(model => model.DoctorImg)</label><br />
+
+                                <img src="~/3.jpg"
+                                     style="max-width:100px;max-height:100px" />
+
+                            }
+                            else
+                            {
+                                <div class="form-group ">
+                                    <label asp-for="DoctorImg" class="control-label"> @Html.DisplayNameFor(model => model.DoctorImg)</label><br />
+                                    @*<input asp-for="DoctorImg" class="form-control" />*@
+
+                                    <img src="@ViewBag.ImageDataUrl" style="border: 1px solid #ddd; border-radius: 100px; padding: 5px; width: 150px;" />
+
+                                    <span asp-validation-for="DoctorImg" class="text-danger"></span>
+                                </div>
+                            }
+                            
+
+                            <div class="form-group ">
+                                <label class="control-label"> التقييم</label>
+                                @if (ViewBag.avg == 1)
+                                {<i class="fas fa-star"></i>}
+                                @if (ViewBag.avg == 0)
+                                {<p>لا يوجد تقييم</p>}
+                                @if (ViewBag.avg == 2)
+                                {<i class="fas fa-star"></i><i class="fas fa-star"></i>}
+                                @if (ViewBag.avg == 3)
+                                {<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>}
+                                @if (ViewBag.avg == 4)
+                                {<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>}
+                                @if (ViewBag.avg == 5)
+                                {<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>}
+
+
+                                <span class="text-danger"></span>
+                            </div>
+
+
+
+                        </div>
+
+                        @*<div class="col-6 mx-auto">
+                            
+                        </div>*@
+
+                    </div>
+                </div>
+               
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+

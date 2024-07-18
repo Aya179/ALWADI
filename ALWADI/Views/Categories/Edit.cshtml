@@ -1,0 +1,85 @@
+﻿@model ALWADI.Models.Category
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<<div class="row">
+    <div class="col-12">
+
+        <div class="card card-secondary border-0">
+            <div class="card-header " style="background-color: #17a2b8; ">
+                <h3 class="card-title"> تعديل  فئة الإعلان </h3>
+
+
+                <div class="d-inline">
+                    <a asp-action=""><i class="fa fa-arrow-left fa-lg"></i> </a>
+                </div>
+
+            </div>
+
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for=" id" />
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-5">
+                            <div class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="category_name" class="control-label">@Html.DisplayNameFor(model => model.category_name)</label>
+                                <input asp-for="category_name" class="form-control" />
+                                <span asp-validation-for="category_name" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="categoy_cost" class="control-label">@Html.DisplayNameFor(model => model.categoy_cost)</label>
+                                <input asp-for="categoy_cost" class="form-control" />
+                                <span asp-validation-for="categoy_cost" class="text-danger"></span>
+                            </div>
+                           
+
+
+
+                        </div>
+                        <div class="col-5">
+
+
+                            <div class="form-group">
+                                <label asp-for="duration" class="control-label">@Html.DisplayNameFor(model => model.duration)</label>
+                                <input class="form-control" asp-for="duration" type="text" />
+                                <span asp-validation-for="duration" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="pruch_cost" class="control-label">@Html.DisplayNameFor(model => model.pruch_cost)</label>
+                                <input asp-for="pruch_cost" class="form-control" />
+                                <span asp-validation-for="pruch_cost" class="text-danger"></span>
+                            </div>
+                           
+
+
+
+
+
+                        </div>
+
+                        
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-primary">
+                        <i class="fa fa-plus"></i>
+                        تعديل
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,86 @@
+﻿@model ALWADI.Models.Client
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card card-secondary border-0">
+            <div class="card-header " style="background-color: #17a2b8; ">
+                <h3 class="card-title">تعديل</h3>
+
+
+                <div class="d-inline">
+                    <a asp-action="Index"><i class="fa fa-arrow-left fa-lg"></i> </a>
+                </div>
+
+            </div>
+
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="clientId" />
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-5">
+                            <div class="text-danger"></div>
+
+                            <div class="form-group">
+                                <label asp-for="clientname" class="control-label"></label>
+                                <input asp-for="clientname" class="form-control" />
+                                <span asp-validation-for="clientname" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="phone" class="control-label"></label>
+                                <input asp-for="phone" class="form-control" />
+                                <span asp-validation-for="phone" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="email" class="control-label"></label>
+                                <input asp-for="email" class="form-control" type="email" />
+                                <span asp-validation-for="email" class="text-danger"></span>
+                            </div>
+
+
+
+                        </div>
+                        <div class="col-5">
+                            <div class="form-group">
+                                <label asp-for="address" class="control-label"></label>
+                                <input asp-for="address" class="form-control" />
+                                <span asp-validation-for="address" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="company" class="control-label"></label>
+                                <input asp-for="company" class="form-control" />
+                                <span asp-validation-for="company" class="text-danger"></span>
+                            </div>
+
+
+                        </div>
+
+                       
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-primary">
+                        <i class="fa fa-plus"></i>
+                        حفظ
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

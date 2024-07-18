@@ -1,0 +1,82 @@
+﻿@model ALWADI.Models.Client
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="row" style="margin-top:10px;">
+    <div class="col-12">
+
+        <div class="card card-success border-0">
+            <div class="card-header">
+                <h3 class="card-title">معلومات المعلن</h3>
+
+
+                <div class="d-inline">
+                    <a asp-action=""><i class="fa fa-arrow-left fa-lg"></i> </a>
+                </div>
+
+            </div>
+
+            <form>
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-5">
+                            <div class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="clientname" class="control-label">@Html.DisplayNameFor(model => model.clientname)</label>
+                                <input asp-for="clientname" class="form-control" />
+                                <span asp-validation-for="clientname" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="email" class="control-label">@Html.DisplayNameFor(model => model.email)</label>
+                                <input asp-for="email" class="form-control" />
+                                <span asp-validation-for="email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="phone" class="control-label">@Html.DisplayNameFor(model => model.phone)</label>
+                                <input asp-for="phone" class="form-control" />
+                                <span asp-validation-for="phone" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                        <div class="col-5">
+
+                            <div class="form-group">
+                                <label asp-for="address" class="control-label">@Html.DisplayNameFor(model => model.address)</label>
+                                <input asp-for="address" class="form-control" />
+                                <span asp-validation-for="address" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="company" class="control-label">@Html.DisplayNameFor(model => model.company)</label>
+                                <input asp-for="company" class="form-control" />
+                                <span asp-validation-for="company" class="text-danger"></span>
+                            </div>
+
+
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-success" asp-action="Edit" asp-route-id="@Model.clientId">
+                        
+                        تعديل
+                    </button>
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

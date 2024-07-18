@@ -1,0 +1,158 @@
+﻿@model ALWADI.Models.Appointment
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>
+            تحذير!
+        </strong>@TempData["AlertMessage"]
+
+    </div>
+
+}
+
+<div class="row" style="margin-top:10px">
+    <div class="col-12">
+
+        <div class="card card-primary border-0">
+            <div class="card-header">
+                <h3 class="card-title">إنشاء موعد</h3>
+
+
+                <div class="d-inline">
+                    <a asp-action=""><i class="fa fa-arrow-left fa-lg"></i> </a>
+                </div>
+
+            </div>
+
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-5">
+                            <div class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Patient" class="control-label">@Html.DisplayNameFor(model => model.Patient)</label>
+                                <select class="form-control" asp-for="Patient" asp-items="ViewBag.Patient"></select>
+                                <span asp-validation-for="Patient" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="Doctor" class="control-label">@Html.DisplayNameFor(model => model.Doctor)</label>
+                                <select class="form-control" asp-for="Doctor" asp-items="ViewBag.Doctor"></select>
+                                <span asp-validation-for="Doctor" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="StartTime" class="control-label">@Html.DisplayNameFor(model => model.StartTime)</label>
+                                <input asp-for="StartTime" type="time" class="form-control" />
+                                <span asp-validation-for="StartTime" class="text-danger"></span>
+                            </div>
+
+                            @*<div class="form-group ">
+                                <label asp-for="EndTime" class="control-label"> @Html.DisplayNameFor(model => model.EndTime)</label>
+                                <input asp-for="EndTime" type="time" class="form-control" />@Html.DisplayFor(model=>model.EndTime)
+                                <span asp-validation-for="EndTime" class="text-danger"></span>
+                            </div>*@
+
+                            <div class="form-group ">
+                                <label asp-for="Date" class="control-label">@Html.DisplayNameFor(model => model.Date)</label>
+                                <input asp-for="Date" type="date" class="form-control" />
+                                <span asp-validation-for="Date" class="text-danger"></span>
+                            </div>
+
+
+
+                        </div>
+                        <div class="col-5">
+
+
+
+
+
+                            <div class="form-group">
+                                <label asp-for="Note" class="control-label">@Html.DisplayNameFor(model => model.Note)</label>
+                                <input class="form-control" asp-for="Note" type="text" />
+                                <span asp-validation-for="Note" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="Rating" class="control-label">@Html.DisplayNameFor(model => model.Rating)</label>
+                                @*<input class="form-control" asp-for="Rating" type="text" />*@
+                                <span asp-validation-for="Rating" class="text-danger"></span>
+                                <input  asp-for="Rating" type="range" value="0" max="5" oninput="num.value = this.value">
+                                <output id="num">0</output>
+                            </div>
+
+                            @*<div class="form-group">
+            <label asp-for="IsReversed" class="control-label">@Html.DisplayNameFor(model => model.IsReversed)</label>
+            <input  type="checkbox" name="IsReversed" class="form-control" asp-for="IsReversed" checked/>
+            <span asp-validation-for="IsReversed" class="text-danger"></span>
+        </div>*@
+
+
+                            <div class="form-group">
+
+
+                                <div class="custom-control custom-radio">
+                                    <div class="radio-1 inl ">
+                                        <input asp-for="IsReversed" class="custom-control-input" id="male" value="true" type="radio">
+                                        <label for="male" class="custom-control-label"> حجزالموعد</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </div>
+
+                                </div>
+
+                                <span asp-validation-for="IsReversed" class="text-danger"></span>
+                            </div>
+
+
+                            @*<div class="form-group ">
+            <label asp-for="IsApproved" class="control-label"> @Html.DisplayNameFor(model => model.IsApproved)</label>
+            <input asp-for="IsApproved" class="form-control" />
+            <span asp-validation-for="IsApproved" class="text-danger"></span>
+        </div>
+        <div class="form-group ">
+            <label asp-for="IsDone" class="control-label"> @Html.DisplayNameFor(model => model.IsDone)</label>
+            <input asp-for="IsDone" class="form-control" />
+            <span asp-validation-for="IsDone" class="text-danger"></span>
+        </div>*@
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-primary">
+                        <i class="fa fa-plus"></i>
+                        إنشاء
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

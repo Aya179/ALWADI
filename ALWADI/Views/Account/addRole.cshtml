@@ -1,0 +1,59 @@
+﻿<section>
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+
+                <div class="card-header" style=" display: flex;
+  justify-content: space-between;">
+                    <a href="/Account/allUsers"> <i class="fa fa-arrow-left fa-lg"></i></a>
+                    <p>إنشاء صلاحية</p>
+
+
+                </div>
+
+                <div class="card-body">
+                    <form style=" width: 50vw;  margin: auto;">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <!-- 2 column grid layout with text inputs for the first and last names -->
+                        <!-- Text input -->
+                        <div class="form-outline mb-4">
+                            <label  class="control-label">name</label>
+                            <input id="role" class="form-control" />
+                            <span  class="text-danger"></span>
+                        </div>
+
+                        <!-- Text input -->
+                       
+
+
+
+                        <button class="btn btn-primary btn-lg btn-block" type="submit" onclick="addrole()">
+                            إضافة سماحية
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+@section Scripts {
+   
+    <script>
+
+
+        function addrole(){
+            var name = document.getElementById('role').value;
+            $.post("/Account/addRole1", {
+
+                role:name,
+            }, function (data) {
+
+                window.location.href = '/Account/allUsers';
+
+            });
+        }
+        </script>
+        }

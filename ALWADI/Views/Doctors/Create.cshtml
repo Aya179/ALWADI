@@ -1,0 +1,214 @@
+﻿@model ALWADI.Models.Doctor
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.min.css" />
+<div class="row" style="margin-top:10px">
+    <div class="col-12">
+
+        <div class="card card-primary border-0">
+            <div class="card-header">
+                <h3 class="card-title">إنشاء طبيب</h3>
+
+
+                <div class="d-inline">
+                    <a asp-action="Index"><i class="fa fa-arrow-left fa-lg"></i> </a>
+                </div>
+
+            </div>
+
+            <form asp-action="Create" enctype="multipart/form-data" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-5">
+                            <div class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="DoctorName" class="control-label">@Html.DisplayNameFor(model => model.DoctorName)</label>
+                                <input class="form-control" asp-for="DoctorName" type="text" />
+                                <span asp-validation-for="DoctorName" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="DoctorAddrress" class="control-label">@Html.DisplayNameFor(model => model.DoctorAddrress)</label>
+                                <input class="form-control" asp-for="DoctorAddrress" type="text" />
+                                <span asp-validation-for="DoctorAddrress" class="text-danger"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label asp-for="clincLocation" class="control-label"> @Html.DisplayNameFor(model => model.clincLocation)</label>
+
+
+                                <select  asp-for="clincLocation" class="form-control" asp-items="ViewBag.location">
+                                </select>
+                                <span asp-validation-for="clincLocation" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="DoctorPhone" class="control-label">@Html.DisplayNameFor(model => model.DoctorPhone)</label>
+                                <input asp-for="DoctorPhone" class="form-control" type="tel" />
+                                <span asp-validation-for="DoctorPhone" class="text-danger"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label asp-for="DoctorEmail" class="control-label"> @Html.DisplayNameFor(model => model.DoctorEmail)</label>
+                                <input asp-for="DoctorEmail" type="email" class="form-control" />
+                                <span asp-validation-for="DoctorEmail" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group ">
+                                <label asp-for="CostPerPatient" class="control-label">@Html.DisplayNameFor(model => model.CostPerPatient)</label>
+                                <input asp-for="CostPerPatient" type="number" class="form-control" min="1" />
+                                <span asp-validation-for="CostPerPatient" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group ">
+                                <label asp-for="reversedCost" class="control-label">@Html.DisplayNameFor(model => model.reversedCost)</label>
+                                <input asp-for="reversedCost" type="number" class="form-control" value="0" min="0" />
+                                <span asp-validation-for="reversedCost" class="text-danger"></span>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="col-5">
+
+
+                            <div class="form-group">
+                                <label asp-for="DoctorCertificate" class="control-label">@Html.DisplayNameFor(model => model.DoctorCertificate)</label>
+                                <input class="form-control" asp-for="DoctorCertificate" type="text" />
+                                <span asp-validation-for="DoctorCertificate" class="text-danger"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label asp-for="WorkExperience" class="control-label"> @Html.DisplayNameFor(model => model.WorkExperience)</label>
+                                <input asp-for="WorkExperience" class="form-control"  min="1"/>
+                                <span asp-validation-for="WorkExperience" class="text-danger"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label asp-for="DoctorImg" class="control-label"> @Html.DisplayNameFor(model => model.DoctorImg)  &nbsp;**</label>
+                                <input asp-for="DoctorImg" class="form-control" type="file" name="file1" id="file1" multiple="multiple" title="الرجاء إدحال صورة الطبيب" required />
+
+
+                                <span asp-validation-for="DoctorImg" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group ">
+                                <label asp-for="DepartmentNum" class="control-label"> @Html.DisplayNameFor(model => model.DepartmentNum)</label>
+
+
+                                <select id="DepartmentNum" asp-for="DepartmentNum" class="form-control" asp-items="ViewBag.DepartmentNum" onchange="getspecialization()">
+                                <option>اختر القسم</option>
+                                </select>
+                                <span asp-validation-for="DepartmentNum" class="text-danger"></span>
+                            </div>
+
+
+
+
+
+
+
+                            <div class="form-group ">
+                                <label asp-for="DoctorSpecialization" class="control-label"> @Html.DisplayNameFor(model => model.DoctorSpecialization)</label>
+
+
+                                <select  class="form-control chzn-select chosen-rtl" multiple="true" name="spId" id="DoctorSpecialization" >
+                                </select>
+                                <span asp-validation-for="DoctorSpecialization" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="Descreption" class="control-label">@Html.DisplayNameFor(model => model.Descreption)</label>
+                                <textarea asp-for="Descreption" class="form-control" type="text"  value="-" ></textarea>
+                                <span asp-validation-for="Descreption" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="DoctorGender" class="control-label">@Html.DisplayNameFor(model => model.DoctorGender)</label><br />
+
+
+                                <div class="custom-control custom-radio">
+                                    <div class="radio-1 inl ">
+                                        <input asp-for="DoctorGender" class="custom-control-input" id="male" value="ذكر" type="radio">
+                                        <label for="male" class="custom-control-label">ذكر</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                    <div class="radio-2">
+                                        <input asp-for="DoctorGender" class="custom-control-input" id="female" value="أنثى" type="radio">
+                                        <label for="female" class="custom-control-label">أنثى</label>
+                                    </div>
+                                </div>
+
+                                <span asp-validation-for="DoctorGender" class="text-danger"></span>
+                            </div>
+
+                           
+
+                        </div>
+
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-primary">
+                        <i class="fa fa-plus"></i>
+                        إنشاء
+                    </button>
+
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js" integrity="sha512-rMGGF4wg1R73ehtnxXBt5mbUfN9JUJwbk21KMlnLZDJh7BkPmeovBuddZCENJddHYYMkCh9hPFnPmS9sspki8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-te/1.4.0/jquery-te.min.js" integrity="sha512-813LH2NdwwzXnVfsmzSuAyyit5bRFdh997hN9Vzm0cdx3LdZV7TZNNb2Ag0dgJPD3J1Xn1Alg2YW70id+RtLrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+       // asp - items="ViewBag.DoctorSpecialization"
+
+        //$(function () {
+        //    $(".chzn-select").chosen();
+        //});
+        function getspecialization(){
+
+
+
+            var depID = document.getElementById('DepartmentNum').value;
+            $(".chzn-select").chosen("destroy");
+            $.get("/Doctors/Getspec", { depId: depID }, function (data) {
+                console.log(data);
+                //
+                var select = document.getElementById("DoctorSpecialization");
+
+
+               // select.innerHTML = "  <option>الرجاء اختيار التخصص</option>";
+                
+
+                for (var i = 0; i < data.length; i++) {
+                   
+                    var option = document.createElement("option");
+                    option.text = data[i].specializationName;
+                    option.value = data[i].specializationId;
+                    select.appendChild(option);
+        
+                  
+
+                }
+                $(".chzn-select").chosen();
+
+            });
+
+        }
+    </script>
+}
+

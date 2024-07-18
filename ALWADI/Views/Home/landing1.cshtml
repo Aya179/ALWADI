@@ -1,0 +1,955 @@
+﻿@model IEnumerable<ALWADI.Models.Department>
+
+
+ @{ Layout = null; }
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AL WADI MEDICAL CENTER</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Prata&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/open-iconic-bootstrap.min.css">
+	<link rel="stylesheet" href="~/css/animate.css">
+    
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="~/css/aos.css">
+
+    <link rel="stylesheet" href="~/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="~/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="~/css/flaticon.css">
+    <link rel="stylesheet" href="~/css/icomoon.css">
+    <link rel="stylesheet" href="~/css/style.css">
+  </head>
+  <body onload="myfun()">
+  
+    <!-- END nav -->
+
+    <section class="hero-wrap js-fullheight" style="background-image: url('/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+          <div class="col-md-10 ftco-animate text-center">
+          	<div class="icon">
+	          	<span class="flaticon-lotus"></span>
+          	</div>
+            <h1> AL WADI MEDICAL CENTER </h1>
+			<h2>مركز الوادي الطبي  </h2>
+            <div class="row justify-content-center">
+	            <div class="col-md-7 mb-3">
+					
+	            	<p> مركز طبي وتجميلي شامل ومتكامل لجميع الاختصاصات الطبية </p>
+	            </div>
+	          </div>
+            <p>
+            	<a href="#" class="btn btn-primary p-3 px-5 py-4 mr-md-2">  من نحن</a>
+            	<a href="#" class="btn btn-outline-primary p-3 px-5 py-4 ml-md-2"  data-toggle="modal" data-target="#exampleModal" hidden>حجز موعد</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+		
+		<section class="ftco-section ftco-intro" style="background-image: url(/images/intro.jpg);">
+			<div class="container">
+				<div class="row justify-content-end">
+					<div class="col-md-6">
+						<div class="heading-section ftco-animate">
+	            <h2 class="mb-4"> في مركز الوادي نهتم بأدق التفاصيل </h2>
+	          </div>
+	          <p class="ftco-animate">الذي يقدم لكي كافة الخدمات التي تحتاجينها 
+				كل شيء تحتاجيه في مكان واحد</p>
+	          <ul class="mt-5 do-list">
+	          	<li class="ftco-animate"><a href="#"><span class="ion-ios-checkmark-circle mr-3"></span>جلسات علاج دوالي الساقين</a></li>
+	          	<li class="ftco-animate"><a href="#"><span class="ion-ios-checkmark-circle mr-3"></span>ازالة التاتو بسهولة</a></li>
+	          	<li class="ftco-animate"><a href="#"><span class="ion-ios-checkmark-circle mr-3"></span>استعيدي شبابك مع البلازما</a></li>
+	          	<li class="ftco-animate"><a href="#"><span class="ion-ios-checkmark-circle mr-3"></span>جلسات الهيدرافيشل مع شد الوجه والاجفان</a></li>
+	          	<li class="ftco-animate"><a href="#"><span class="ion-ios-checkmark-circle mr-3"></span>ازالة الشعر بالليزر</a></li>
+	          </ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+
+<!------------------------------------------clinics------------------------------------------->
+
+		<section class="ftco-section ftco-no-pt ftco-no-pb" id="clinic">
+			<div class="container">
+				<div class="row no-gutters">
+					 @foreach (var item in Model)
+    {
+					<div class="col-md-4 d-flex align-items-stretch" id="@item.DepartmentId">
+						<div class="offer-deal text-center px-2 px-lg-5">
+							<img  class="img ftco-animate showimg+@item.DepartmentId"></img>
+							<div class="text mt-4">
+								<input  class="id" type="hidden" value="@item.DepartmentId"/>
+								<h3 class="mb-4">  @item.DepartmentName</h3>
+								<p class="mb-5">@item.DepartmentDescription</p>
+								<p><a href="reserve.html" class="btn btn-white px-4 py-3"  data-toggle="modal" data-target="#exampleModal" onclick="getDoctors(@item.DepartmentId)">  حجز موعد  </a></p>
+							</div>
+						</div>
+					</div>}
+					@*<div class="col-md-4 d-flex align-items-stretch">
+						<div class="offer-deal active text-center px-2 px-lg-5">
+							<div class="img ftco-animate" style="background-image: url(/images/sp7.jpg);"></div>
+							<div class="text mt-4">
+								<h3 class="mb-4">  العيادة البولية</h3>
+								<p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								<p><a href="reserve.html" class="btn btn-white px-4 py-3"  data-toggle="modal" data-target="#exampleModal">  حجز موعد  </a></p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 d-flex align-items-stretch">
+						<div class="offer-deal text-center px-2 px-lg-5">
+						<div class="img ftco-animate" style="background-image: url(/images/ap4.jpg);"></div>
+							<div class="text mt-4">
+								<h3 class="mb-4">  عيادة الاطفال</h3>
+								<p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								<p><a href="reserve.html" class="btn btn-white px-4 py-3"  data-toggle="modal" data-target="#exampleModal">  حجز موعد  </a></p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 d-flex align-items-stretch">
+						<div class="offer-deal active text-center px-2 px-lg-5">
+							<div class="img ftco-animate" style="background-image: url(/images/sp5.jpg);"></div>
+							<div class="text mt-4">
+								<h3 class="mb-4">  العيادة التنظيرية</h3>
+								<p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								<p><a href="reserve.html" class="btn btn-white px-4 py-3"  data-toggle="modal" data-target="#exampleModal">  حجز موعد  </a></p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 d-flex align-items-stretch">
+						<div class="offer-deal  text-center px-2 px-lg-5">
+						<div class="img ftco-animate" style="background-image: url(/images/sp3.jpg);"></div>
+							<div class="text mt-4">
+								<h3 class="mb-4">  عيادة العلاج الفيزيائي </h3>
+								<p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								<p><a href="reserve.html" class="btn btn-white px-4 py-3"  data-toggle="modal" data-target="#exampleModal">  حجز موعد  </a></p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 d-flex align-items-stretch">
+						<div class="offer-deal active text-center px-2 px-lg-5">
+						<div class="img ftco-animate" style="background-image: url(/images/sp6.jpg);"></div>
+							<div class="text mt-4">
+								<h3 class="mb-4">  العيادة الهضمية</h3>
+								<p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								<p><a href="reserve.html" class="btn btn-white px-4 py-3"  data-toggle="modal" data-target="#exampleModal">  حجز موعد  </a></p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4 d-flex align-items-stretch">
+						<div class="offer-deal  text-center px-2 px-lg-5">
+						<div class="img ftco-animate" style="background-image: url(/images/sp8.jpg);"></div>
+							<div class="text mt-4">
+								<h3 class="mb-4">  العيادة الأذنية</h3>
+								<p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								<p><a href="reserve.html" class="btn btn-white px-4 py-3"  data-toggle="modal" data-target="#exampleModal">  حجز موعد  </a></p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 d-flex align-items-stretch">
+						<div class="offer-deal active text-center px-2 px-lg-5">
+						<div class="img ftco-animate" style="background-image: url(/images/sp9.jpg);"></div>
+							<div class="text mt-4">
+								<h3 class="mb-4">  العيادة النسائية</h3>
+								<p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								<p><a href="reserve.html" class="btn btn-white px-4 py-3"  data-toggle="modal" data-target="#exampleModal">   حجز موعد  </a></p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 d-flex align-items-stretch">
+						<div class="offer-deal  text-center px-2 px-lg-5">
+						<div class="img ftco-animate" style="background-image: url(/images/sp0.jpg);"></div>
+							<div class="text mt-4">
+								<h3 class="mb-4">  العيادة القلبية</h3>
+								<p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								<p><a href="reserve.html" class="btn btn-white px-4 py-3"  data-toggle="modal" data-target="#exampleModal">  حجز موعد  </a></p>
+							</div>
+						</div>
+					</div>*@
+				</div>
+			</div>
+		</section>
+
+
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+			<div class="modal-dialog" role="document" style="padding: 7%;">
+			  <div class="modal-content" style="background-image:url(/images/bg_1.jpg);">
+				<div class="modal-header">
+				 
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body" >
+					<div class="container book_now">
+						<div class="row ">
+							<div class="col-md-12 title">
+							 <h2> احجز موعدك</h2>
+								<img src="~/images/logo-wadi.png">
+							</div>
+						</div>
+					  
+					   <div class="row  content">
+				
+						<div class="col-md-6">
+						   
+								<div class="form-group">
+									<label for="email"> اسم الطبيب </label>
+									<select class="browser-default custom-select form-control" id="DoctorId1" style="direction: rtl;">
+										
+										
+									  </select>
+								</div>
+								<div class="form-group">
+									<label for="pwd">وقت بدء الموعد </label>
+									<input type="time" class="form-control" id="startTime1" placeholder=" " name="" style="direction: rtl;">
+								</div>
+								<div class="form-group">
+									<label for="pwd">التاريخ</label>
+									<input type="date" class="form-control" id="date1" placeholder=" " name="" style="direction: rtl;">
+								</div>
+								<div class="form-group">
+									<label for="pwd">رقم الهاتف</label>
+									<input type="text" class="form-control" id="Pphone1" placeholder=" " name="" style="direction: rtl;">
+								</div>
+						   
+						</div>
+				
+						<div class="col-md-6">
+						   
+								<div class="form-group">
+								<label for="email"> الاسم الثلاثي</label>
+								<input type="text" class="form-control" id="Pname1" placeholder=" " name="">
+								</div>
+								@*<div class="form-group">
+									<label for="pwd">البريد الالكتروني</label>
+									<input type="email" class="form-control" id="" placeholder=" " name="">
+								</div>*@
+							   
+								<div class="form-group">
+								<label for="pwd">العنوان </label>
+									<input type="text" class="form-control" id="Paddress1" placeholder=" " name="">
+								</div>
+								<div class="form-group">
+									<label for="pwd">العمر</label>
+									<input type="number" class="form-control" id="Page1" placeholder=" " name="">
+								</div>
+								<div class="form-group">
+										<label for="pwd">الجنس</label><br>
+										<label for="html">ذكر</label>
+										<input type="radio" id="Pgender1" name="fav_language" value="ذكر">
+				                        <br>
+										<label for="html">أنثى</label>
+									<input type="radio" id="Pgender1" name="fav_language" value="أنثى">
+				                        <br>
+								</div>
+				
+							   
+							
+						</div>
+				
+						<div class="col-md-12 text-left">
+							<button type="submit" class="btn btn-primary btn-book" onclick="addApp()" >حجز</button>
+							
+						</div>
+					   </div>
+				
+					  </div>
+				</div>
+				
+			  </div>
+			</div>
+		</div>
+		
+    
+    <!--<section class="ftco-section ftco-section-services bg-light">
+    	<div class="container-fluid px-md-5">
+    		<div class="row">
+    			<div class="col-md-6 col-lg-3">
+						<div class="services text-center ftco-animate">
+							<div class="icon d-flex justify-content-center align-items-center">
+								<span class="flaticon-candle"></span>
+							</div>
+							<div class="text mt-3">
+								<h3>Aromatheraphy</h3>
+								<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3">
+						<div class="services text-center ftco-animate">
+							<div class="icon d-flex justify-content-center align-items-center">
+								<span class="flaticon-beauty-treatment"></span>
+							</div>
+							<div class="text mt-3">
+								<h3>Skin Care</h3>
+								<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3">
+						<div class="services text-center ftco-animate">
+							<div class="icon d-flex justify-content-center align-items-center">
+								<span class="flaticon-stone"></span>
+							</div>
+							<div class="text mt-3">
+								<h3>Herbal Spa</h3>
+								<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3">
+						<div class="services text-center ftco-animate">
+							<div class="icon d-flex justify-content-center align-items-center">
+								<span class="flaticon-relax"></span>
+							</div>
+							<div class="text mt-3">
+								<h3>Body Massage</h3>
+								<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
+							</div>
+						</div>
+					</div>
+				</div>
+    	</div>
+    </section>
+
+	  <section class="ftco-section">
+	  	<div class="container-fluid px-md-5">
+	  		<div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-12 heading-section ftco-animate text-center">
+            <h3 class="subheading">Services</h3>
+            <h2 class="mb-1">Treatments</h2>
+          </div>
+        </div>
+        <div class="row align-items-center">
+        	<div class="col-lg-4">
+        		<div class="row no-gutters">
+        			<div class="col-md-6 d-flex align-items-stretch">
+        				<div class="treatment w-100 text-center ftco-animate border border-right-0 border-bottom-0 p-3 py-4">
+									<div class="icon d-flex justify-content-center align-items-center">
+										<span class="flaticon-candle"></span>
+									</div>
+									<div class="text mt-2">
+										<h3>Salt &amp; Aroma</h3>
+										<p>A small river named Duden flows by their place and supplies.</p>
+									</div>
+								</div>
+        			</div>
+        			<div class="col-md-6 d-flex align-items-stretch">
+        				<div class="treatment w-100 text-center ftco-animate border border-bottom-0 p-3 py-4">
+									<div class="icon d-flex justify-content-center align-items-center">
+										<span class="flaticon-spa-1"></span>
+									</div>
+									<div class="text mt-2">
+										<h3>Hydro</h3>
+										<p>A small river named Duden flows.</p>
+									</div>
+								</div>
+        			</div>
+        			<div class="col-md-6 d-flex align-items-stretch">
+        				<div class="treatment w-100 text-center ftco-animate border border-right-0 p-3 py-4">
+									<div class="icon d-flex justify-content-center align-items-center">
+										<span class="flaticon-stone"></span>
+									</div>
+									<div class="text mt-2">
+										<h3>Hot Stone</h3>
+										<p>A small river named Duden flows by their place and supplies.</p>
+									</div>
+								</div>
+        			</div>
+        			<div class="col-md-6 d-flex align-items-stretch">
+        				<div class="treatment w-100 text-center ftco-animate border p-3 py-4">
+									<div class="icon d-flex justify-content-center align-items-center">
+										<span class="flaticon-lotus"></span>
+									</div>
+									<div class="text mt-2">
+										<h3>Aroma</h3>
+										<p>A small river named Duden flows.</p>
+									</div>
+								</div>
+        			</div>
+        		</div>
+        	</div>
+
+
+        	<div class="col-lg-4 d-flex align-items-stretch">
+        		<div id="accordion" class="myaccordion w-100 text-center py-5 px-1 px-md-4">
+        			<div>
+	        			<h3>Prices</h3>
+	        			<p>Far far away, behind the word mountains, far from the countries Vokalia</p>
+        			</div>
+						  <div class="card">
+						    <div class="card-header" id="headingOne">
+						      <h2 class="mb-0">
+						        <button class="d-flex align-items-center justify-content-between btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						          Spa Therapies
+						          <i class="fa" aria-hidden="true"></i>
+						        </button>
+						      </h2>
+						    </div>
+						    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+						      <div class="card-body text-left">
+						      	<ul>
+						      		<li class="d-flex">
+						      			<span>Face Treatments</span>
+						      			<span>40 min.</span>
+						      			<span>$10</span>
+						      		</li>
+						      		<li class="d-flex">
+						      			<span>Nail Treatments</span>
+						      			<span>30 min.</span>
+						      			<span>$20</span>
+						      		</li>
+						      		<li class="d-flex">
+						      			<span>Medical Treatments</span>
+						      			<span>60 min.</span>
+						      			<span>$10</span>
+						      		</li>
+						      		<li class="d-flex">
+						      			<span>Hair Treatments</span>
+						      			<span>30 min.</span>
+						      			<span>$30</span>
+						      		</li>
+						      	</ul>
+						      </div>
+						    </div>
+						  </div>
+
+						  <div class="card">
+						    <div class="card-header" id="headingTwo">
+						      <h2 class="mb-0">
+						        <button class="d-flex align-items-center justify-content-between btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						          Massage Therapies
+						          <i class="fa" aria-hidden="true"></i>
+						        </button>
+						      </h2>
+						    </div>
+						    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+						      <div class="card-body text-left">
+						      	<ul>
+						      		<li class="d-flex">
+						      			<span>Face Treatments</span>
+						      			<span>40 min.</span>
+						      			<span>$10</span>
+						      		</li>
+						      		<li class="d-flex">
+						      			<span>Nail Treatments</span>
+						      			<span>30 min.</span>
+						      			<span>$20</span>
+						      		</li>
+						      		<li class="d-flex">
+						      			<span>Medical Treatments</span>
+						      			<span>60 min.</span>
+						      			<span>$10</span>
+						      		</li>
+						      		<li class="d-flex">
+						      			<span>Hair Treatments</span>
+						      			<span>30 min.</span>
+						      			<span>$30</span>
+						      		</li>
+						      	</ul>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+        	</div>
+
+
+        	<div class="col-lg-4">
+        		<div class="row no-gutters">
+        			<div class="col-md-6 d-flex align-items-stretch">
+        				<div class="treatment w-100 text-center ftco-animate border border-right-0 border-bottom-0 p-3 py-4">
+									<div class="icon d-flex justify-content-center align-items-center">
+										<span class="flaticon-beauty-treatment"></span>
+									</div>
+									<div class="text mt-2">
+										<h3>Relaxation</h3>
+										<p>A small river named Duden flows by their place and supplies.</p>
+									</div>
+								</div>
+        			</div>
+        			<div class="col-md-6 d-flex align-items-stretch">
+        				<div class="treatment w-100 text-center ftco-animate border border-bottom-0 p-3 py-4">
+									<div class="icon d-flex justify-content-center align-items-center">
+										<span class="flaticon-relax"></span>
+									</div>
+									<div class="text mt-2">
+										<h3>Athlete</h3>
+										<p>A small river named Duden flows.</p>
+									</div>
+								</div>
+        			</div>
+        			<div class="col-md-6 d-flex align-items-stretch">
+        				<div class="treatment w-100 text-center ftco-animate border border-right-0 p-3 py-4">
+									<div class="icon d-flex justify-content-center align-items-center">
+										<span class="flaticon-massage"></span>
+									</div>
+									<div class="text mt-2">
+										<h3>Thai</h3>
+										<p>A small river named Duden flows by their place and supplies.</p>
+									</div>
+								</div>
+        			</div>
+        			<div class="col-md-6 d-flex align-items-stretch">
+        				<div class="treatment w-100 text-center ftco-animate border p-3 py-4">
+									<div class="icon d-flex justify-content-center align-items-center">
+										<span class="flaticon-rose"></span>
+									</div>
+									<div class="text mt-2">
+										<h3>Rose</h3>
+										<p>A small river named Duden flows.</p>
+									</div>
+								</div>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+	  	</div>
+	  </section>-->
+
+
+   
+<!-----------------------------------------clients------------------------------------------->
+
+    <section class="ftco-section testimony-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-10 heading-section ftco-animate text-center">
+            <h3 class="subheading">الأعضاء</h3>
+            <h2 class="mb-1"> زبائننا</h2>
+          </div>
+        </div>
+        <div class="row ftco-animate">
+          <div class="col-md-12">
+            <div class="carousel-testimony owl-carousel">
+              <div class="item">
+                <div class="testimony-wrap p-4 pb-5">
+                  <div class="text">
+                  	<div class="line pl-5">
+	                    <p class="mb-4 pb-1">كادر ممتاز واطباء متمرسون وخدمة رائعة اعجبتني العناية في المركز وجودة  الخدمات المتاحة بعناية    </p>
+	                    <span class="quote d-flex align-items-center justify-content-center">
+	                      <i class="icon-quote-left"></i>
+	                    </span>
+	                  </div>
+                    <div class="d-flex align-items-center">
+										<div class="user-img" style="background-image: url(/images/person_1.jpg)">
+		                  </div>
+		                  <div class="ml-4">
+		                  	<p class="name"> رامي عبود</p>
+		                    <span class="position">زبون</span>
+		                  </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="item">
+                <div class="testimony-wrap p-4 pb-5">
+                  <div class="text">
+                    <div class="line pl-5">
+						<p class="mb-4 pb-1">كادر ممتاز واطباء متمرسون وخدمة رائعة اعجبتني العناية في المركز وجودة  الخدمات المتاحة بعناية    </p>                  
+  <span class="quote d-flex align-items-center justify-content-center">
+	                      <i class="icon-quote-left"></i>
+	                    </span>
+	                  </div>
+
+                    <div class="d-flex align-items-center">
+										<div class="user-img" style="background-image: url(/images/person_3.jpg)">
+		                  </div>
+		                  <div class="ml-4">
+		                  	<p class="name"> فادي رباحي</p>
+		                    <span class="position">زبون</span>
+		                  </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap p-4 pb-5">
+                  <div class="text">
+                    <div class="line pl-5">
+						<p class="mb-4 pb-1">كادر ممتاز واطباء متمرسون وخدمة رائعة اعجبتني العناية في المركز وجودة  الخدمات المتاحة بعناية    </p>
+	                    <span class="quote d-flex align-items-center justify-content-center">
+	                      <i class="icon-quote-left"></i>
+	                    </span>
+	                  </div>
+
+                    <div class="d-flex align-items-center">
+										<div class="user-img" style="background-image: url(/images/person_4.jpg)">
+		                  </div>
+		                  <div class="ml-4">
+		                  	<p class="name"> احمد احمد</p>
+		                    <span class="position">زبون</span>
+		                  </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap p-4 pb-5">
+                  <div class="text">
+                    <div class="line pl-5">
+						<p class="mb-4 pb-1">كادر ممتاز واطباء متمرسون وخدمة رائعة اعجبتني العناية في المركز وجودة  الخدمات المتاحة بعناية    </p>
+	                    <span class="quote d-flex align-items-center justify-content-center">
+	                      <i class="icon-quote-left"></i>
+	                    </span>
+	                  </div>
+
+                    <div class="d-flex align-items-center">
+										<div class="user-img" style="background-image: url(/images/person_2.jpg)">
+		                  </div>
+		                  <div class="ml-4">
+		                  	<p class="name"> سارة خوري</p>
+		                    <span class="position">زبون</span>
+		                  </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+	<section class="ftco-counter img" id="section-counter" style="background-image: url(/images/bg_3.jpg);" data-stellar-background-ratio="0.5">
+			<div class="overlay"></div>
+      <div class="container">
+        <div class="row justify-content-center">
+        	<div class="col-md-10">
+        		<div class="row">
+		          <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		              	<strong class="number" data-number="2560">0</strong>
+		              	<span> الزبائن</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		              	<strong class="number" data-number="20">0</strong>
+		              	<span>التخصصات</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		              	<strong class="number" data-number="15">0</strong>
+		              	<span>  سنوات الخبرة</span>
+		              </div>
+		            </div>
+		          </div>
+		         
+		        </div>
+		      </div>
+        </div>
+      </div>
+    </section>
+
+    <!--<section class="ftco-section bg-light">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 heading-section ftco-animate text-center">
+            <h3 class="subheading">Blog</h3>
+            <h2 class="mb-1">Recent Posts</h2>
+          </div>
+        </div>
+        <div class="row d-flex">
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
+              </a>
+              <div class="text p-4 float-right d-block">
+              	<div class="d-flex align-items-center pt-2 mb-4">
+              		<div class="one">
+              			<span class="day">25</span>
+              		</div>
+              		<div class="two">
+              			<span class="yr">2019</span>
+              			<span class="mos">September</span>
+              		</div>
+              	</div>
+                <h3 class="heading mt-2"><a href="#">Is wellness the new luxury</a></h3>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
+              </a>
+              <div class="text p-4 float-right d-block">
+              	<div class="d-flex align-items-center pt-2 mb-4">
+              		<div class="one">
+              			<span class="day">25</span>
+              		</div>
+              		<div class="two">
+              			<span class="yr">2019</span>
+              			<span class="mos">September</span>
+              		</div>
+              	</div>
+                <h3 class="heading mt-2"><a href="#">Is wellness the new luxury</a></h3>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry">
+              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
+              </a>
+              <div class="text p-4 float-right d-block">
+              	<div class="d-flex align-items-center pt-2 mb-4">
+              		<div class="one">
+              			<span class="day">25</span>
+              		</div>
+              		<div class="two">
+              			<span class="yr">2019</span>
+              			<span class="mos">September</span>
+              		</div>
+              	</div>
+                <h3 class="heading mt-2"><a href="#">Is wellness the new luxury</a></h3>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>-->
+
+	<section class="ftco-section">
+    	<div class="container">
+    	<div class="row justify-content-center mb-5">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+          	<h3 class="subheading">الكادر</h3>
+            <h2 class="mb-1">   تعرف على كادرنا المميز</h2>
+          </div>
+        </div>
+    		<div class="row">
+    			<div class="col-lg-3 d-flex">
+    				<div class="coach align-items-stretch">
+						<div class="img" style="background-image: url(/images/doc1.jpg);"></div>
+	    				<div class="text bg-white p-4 ftco-animate">
+	    					<span class="subheading">Owner / Head Coach</span>
+	    					<h3><a href="#">Elizabeth Nelson</a></h3>
+	    					
+	    					<p></p>
+	    				</div>
+	    			</div>
+    			</div>
+    			<div class="col-lg-3 d-flex">
+    				<div class="coach align-items-stretch">
+						<div class="img" style="background-image: url(/images/doc2.jpg);"></div>
+	    				<div class="text bg-white p-4 ftco-animate">
+	    					<span class="subheading">Owner / Head Coach</span>
+	    					<h3><a href="#">Scarlett Torres</a></h3>
+	    					
+	    					<p></p>
+	    				</div>
+	    			</div>
+    			</div>
+    			<div class="col-lg-3 d-flex">
+    				<div class="coach align-items-stretch">
+						<div class="img" style="background-image: url(/images/doc3.jpg);"></div>
+	    				<div class="text bg-white p-4 ftco-animate">
+	    					<span class="subheading">Owner / Head Coach</span>
+	    					<h3><a href="#">Victoria Wright</a></h3>
+	    					
+	    					<p></p>
+	    				</div>
+	    			</div>
+    			</div>
+    			<div class="col-lg-3 d-flex">
+    				<div class="coach align-items-stretch">
+						<div class="img" style="background-image: url(/images/doc5.jpg);"></div>
+	    				<div class="text bg-white p-4 ftco-animate">
+	    					<span class="subheading">Owner / Head Coach</span>
+	    					<h3><a href="#">Stella Perry</a></h3>
+	    					
+	    					<p></p>
+	    				</div>
+	    			</div>
+    			</div>
+    		</div>
+
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<a class="btn btn-outline-primary "  href="specialists.html">المزيد</a>
+				</div>
+			</div>
+    	</div>
+    </section>
+
+		
+
+    <footer class="ftco-footer ftco-section">
+      <div class="container">
+        <div class="row d-flex">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+						<img src="~/images/logo-wadi.png">
+              <p>مركز طبي وتجميلي شامل ومتكامل لجميع الاختصاصات الطبية</p>
+              <!--<ul class="ftco-footer-social list-unstyled float-lft mt-3">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>-->
+            </div>
+          </div>
+        
+          <div class="col-md  d-flex justify-content-center">
+            <div class="ftco-footer-widget mb-4  " >
+              <h2 class="ftco-heading-2"> الاقسام الرئيسية</h2>
+              <ul class="list-unstyled">
+                <li><a href="#"></a></li>
+				<li><a href="index.html">الصفحة الرئيسية</a></li>
+                <li><a href="#">العيادات</a></li>
+                <li><a href="#">العروض</a></li>
+                <li><a href="contact.html">التواصل</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2"> هل تحتاج الى اي استفسار؟</h2>
+              <div class="block-23 mb-3  foot-block">
+                <ul>
+                  <li><span class="icon icon-map-marker"></span><span class="text">الحواش - وادي النصارى, Homs, Syria</span></li>
+                  <li><a href="#"><span class="icon icon-phone"></span><span class="text">0997 442 442</span></a></li>
+                  <li><a href="#"><span class="icon icon-envelope"></span><span class="text">alwadimc@hotmail.com</span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+ 
+
+
+  <script src="~/js/jquery.min.js"></script>
+  <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="~/js/popper.min.js"></script>
+  <script src="~/js/bootstrap.min.js"></script>
+	<script src="~/js/jquery.easing.1.3.js"></script>
+  <script src="~/js/jquery.waypoints.min.js"></script>
+  <script src="~/js/jquery.stellar.min.js"></script>
+  <script src="~/js/owl.carousel.min.js"></script>
+  <script src="~/js/jquery.magnific-popup.min.js"></script>
+  <script src="~/js/aos.js"></script>
+  <script src="~/js/jquery.animateNumber.min.js"></script>
+  <script src="~/js/bootstrap-datepicker.js"></script>
+  <script src="~/js/jquery.timepicker.min.js"></script>
+  <script src="~/js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="~/js/google-map.js"></script>
+	<script src="~/js/main.js"></script>
+	<script>
+		function myfun(){
+			var did=document.getElementsByClassName("id");
+			
+
+			for(var a=0;a<did.length;a++){
+				getimg(did[a].value);
+			}
+		}
+		function getimg(id){
+			$.get("/Home/getImg", {
+
+				Did:id,
+            }, function (data) {
+
+				const img = document.getElementsByClassName("showimg+"+id);
+				console.log(img);
+				img[0].src = data;
+
+
+
+			});
+			
+		}
+		function getDoctors(departmentId){
+			$.get("/Home/getDoctorsBydep", { Depid: departmentId }, function(data) {
+                console.log(data);
+				var select = document.getElementById("DoctorId1");
+                select.innerHTML = "  <option>اختر الطبيب</option>";
+                // var option="";
+                for (var i = 0; i < data.length; i++) {
+                    // alert(data[i].subTypeArName);
+                    var option = document.createElement("option");
+                    option.text = data[i].doctorName;
+                    option.value = data[i].doctorId;
+                    select.appendChild(option);
+                    //   document.getElementById('cat').innerHTML()
+
+                }
+               
+
+
+
+
+            });
+
+
+		}
+
+
+		function addApp(){
+
+			
+			var Pname2=document.getElementById("Pname1").value;
+			var Paddress2=document.getElementById("Paddress1").value;
+			var Page2=document.getElementById("Page1").value;
+			var Pgender2 = document.getElementById("Pgender1").value;
+			
+			var Pphone2 = document.getElementById("Pphone1").value;
+
+			var DoctorId2=document.getElementById("DoctorId1").value;
+			var startTime2=document.getElementById("startTime1").value;
+			var date2=document.getElementById("date1").value;
+
+			$.post("/Home/getAppoitment", { Pname: Pname2, Paddress: Paddress2, Page: Page2, Pgender: Pgender2, Pphone:Pphone2,DoctorId:DoctorId2,startTime:startTime2,date:date2 }, function (data) {
+                console.log(data);
+				alert(data);
+
+
+
+
+            });
+
+			//alert(Pgender2);
+		}
+		//$(document).ready(function() {
+  //         // 
+		//	//getimg(id);
+
+  //      });
+	</script>
+    
+  </body>
+</html>

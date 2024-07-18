@@ -1,0 +1,67 @@
+﻿@model ALWADI.Models.Doctor
+
+
+@{ Layout = null; }
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="icon" href="~/images/logo.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AL-WADI</title>
+
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
+    <link href="~/AdminStyle/css/styles.css" asp-append-version="true" rel="stylesheet" />
+
+</head>
+<body>
+    @using (Html.BeginForm("DoctorProfile", "Doctors"))
+    {
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                                    <div class="card-body">
+                                        <form id="account" method="get">
+                                            <div asp-validation-summary="All" class="text-danger"></div>
+                                            <div class="form-floating mb-3">
+                                                <label asp-for="DoctorName" style="float:left;"></label>
+                                                <input asp-for="DoctorName" class="form-control" name="name" placeholder="اسم الطبيب" />
+
+                                            </div>
+                                            <div class="form-floating mb-3 ">
+                                                <label asp-for="DoctorPhone" style="float:left;"></label>
+                                                <input asp-for="DoctorPhone" class="form-control" placeholder="رقم الموبايل" name="phone" />
+
+                                                <span asp-validation-for="DoctorPhone" class="text-danger"></span>
+                                            </div>
+                                            @*<div class="form-check mb-3">
+                                                    <label class="form-check-label" asp-for="Input.RememberMe" style="float:left;">
+                                                        <input class="form-check-input" type="checkbox" asp-for="Input.RememberMe" />
+                                                        &nbsp;&nbsp;
+                                                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                                    </label>
+                                                </div>*@
+                                            <div class="d-flex align-items-center  mt-4 mb-0  d-flex justify-content-center">
+
+                                                <button type="submit" class="btn btn-primary " @*asp-route-id="@Model.DoctorId" asp-action="DoctorAppointment1"*@>Login</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        }
+    </body>
+
+</html>

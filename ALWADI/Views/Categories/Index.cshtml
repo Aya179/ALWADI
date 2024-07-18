@@ -1,0 +1,122 @@
+﻿@model IEnumerable<ALWADI.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row" style="margin-top:10px;">
+    <div class="col-12">
+
+
+        <div class="card">
+
+            <div class="card-header">
+                <h3 class="card-title">
+                    فئات الإعلان
+
+
+                </h3>
+                <a class="float-left" asp-action="Create">
+                    <i class="fa fa-plus"></i>
+                    إنشاء فئة جديدة
+
+                </a>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped" id="dep_table">
+
+                        <thead style="white-space: nowrap;">
+                            <tr>
+                                <th style="text-align: center;">
+                                    @Html.DisplayNameFor(model => model.id)
+                                </th>
+                                <th style="text-align: center;">
+                                    @Html.DisplayNameFor(model => model.categoy_cost)
+                                </th>
+                                <th style="text-align: center;">
+                                    @Html.DisplayNameFor(model => model.pruch_cost)
+                                </th>
+                                <th style="text-align: center;">
+                                    @Html.DisplayNameFor(model => model.category_name)
+                                </th>
+                                <th style="text-align: center;">
+                                    @Html.DisplayNameFor(model => model.duration)
+                                </th>
+                                
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+
+                                <td style="text-align: center;">
+                                    @Html.DisplayFor(modelItem => item.id)
+                                </td>
+                                <td style="text-align: center;">
+                                    @Html.DisplayFor(modelItem => item.categoy_cost)
+                                </td>
+                                <td style="text-align: center;">
+                                    @Html.DisplayFor(modelItem => item.pruch_cost)
+                                </td>
+                                <td style="text-align: center;">
+                                    @Html.DisplayFor(modelItem => item.category_name)
+                                </td>
+                                <td style="text-align: center;">
+                                    @Html.DisplayFor(modelItem => item.duration)
+                                </td>
+                                
+                                <td style="text-align: center; white-space: nowrap;">
+                                    <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.id">تعديل</a> |
+                                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.id" style="background-color:green;">تفاصيل</a> |
+                                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.id">حذف</a>
+
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+
+
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@section Scripts {
+    <script>
+        $(function () {
+            $('#dep_table').DataTable({
+                "lengthMenu": [[5, 10, 15, 20, 25, -1], [5, 10, 15, 20, 25, "All"]],
+                "responsive": true,
+                "autoWidth": true,
+                "language": {
+                    "sProcessing": "جارٍ التحميل...",
+                    "sLengthMenu": "أظهر _MENU_ مدخلات",
+                    "sZeroRecords": "لم يتم العثور على أية نتائج",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sInfoPostFix": "",
+                    "sSearch": "البحث:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+                }
+            });
+        });</script>
+}
+

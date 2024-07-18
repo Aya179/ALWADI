@@ -1,0 +1,117 @@
+﻿@model IEnumerable<ALWADI.Models.advStatistics>
+
+@{
+    ViewData["Title"] = "Statistics";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@ViewBag.count</h3>
+
+
+                        <p>عدد المعلنين</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    @*<a href="/Clients/Index" class="small-box-footer">المزيد من المعلومات <i class="fas fa-arrow-circle-right"></i></a>*@
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3><sup style="font-size: 20px">@ViewBag.count1</sup></h3>
+
+                        <p>عدد الإعلانات</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+                    @*<a href="/Specializations/index" class="small-box-footer">المزيد من المعلومات <i class="fas fa-arrow-circle-right"></i></a>*@
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>@ViewBag.count2</h3>
+
+                        <p>عدد الإعلانات النشطة</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+                    @*<a href="/Doctors/Index" class="small-box-footer">المزيد من المعلومات <i class="fas fa-arrow-circle-right"></i></a>*@
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>@ViewBag.count3</h3>
+
+                        <p>مجموع الأرباح</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                    </div>
+                    @*<a href="/Appointments/Index" class="small-box-footer">المزيد من المعلومات <i class="fas fa-arrow-circle-right"></i></a>*@
+                </div>
+            </div>
+
+            <!-- ./col -->
+        </div>
+
+    </div><!-- /.container-fluid -->
+
+</section>
+
+<div class="row d-flex align-items-stretch">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-12 col-sm-6 col-md-4 @*d-flex align-items-stretch*@">
+
+            <div class="card bg-light">
+                <div class="card-header text-muted border-bottom-0 text-center">
+                    الإعلان
+                </div>
+                <div class="card-body pt-0">
+                    <div class="row">
+                        <div class="col-12 ">
+                            <p class="text-muted text-sm">
+                                <b>الصورة: </b> <img class="card-img-top" src="@Html.Raw("data:image/jpeg;base64," + item.ImageToShow)" style="width:60%; height: 100px;" />
+                            </p>
+                            <p class="text-muted text-sm"><b>اسم المعلن: </b> @item.client </p>
+                            <p class="text-muted text-sm"><b>تاريخ العرض: </b> @item.Ads_StartDate </p>
+                            <p class="text-muted text-sm"><b>مدة العرض: </b> @item.duration </p>
+                            <p class="text-muted text-sm"><b>تاريخ نهاية العرض: </b>@item.Ads_endDate </p>
+
+                            <p class="text-muted text-sm"><b>قيمة الأرباح: </b> @item.profits </p>
+
+
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+    }
+
+
+</div>

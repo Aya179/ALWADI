@@ -1,0 +1,125 @@
+﻿
+
+<div class="row" style="margin-top:10px">
+    <div class="col-12">
+
+        <div class="card card-primary border-0">
+            <div class="card-header">
+                <h3 class="card-title">إنشاء موظف</h3>
+
+
+                <div class="d-inline">
+                    <a asp-action="Index"><i class="fa fa-arrow-left fa-lg"></i> </a>
+                </div>
+
+            </div>
+
+            <form   method="post">
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-5">
+                            <div class="text-danger"></div>
+                            <div class="form-group">
+                                <label class="control-label">اسم المستخدم</label>
+
+                               
+                                <input id="name" class="form-control"  type="text" />
+                                <span  class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label">الإيميل</label>
+                                <input id="email" class="form-control" type="email" />
+                                <span  class="text-danger"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label  class="control-label"> السماحيات</label>
+
+                                <select id="role" class="form-control" onchange="test()">
+                                    <option>الرجاء اختيار السماحية</option>
+
+                                </select>
+                               
+                            </div>
+
+                            <div class="form-group">
+                                <label  class="control-label">كلمة السر</label>
+                                <input id="pass"  class="form-control" type="tel" />
+                                <span class="text-danger"></span>
+                            </div>
+                           
+                           
+
+               
+                    <button type="submit" class="btn btn-outline-primary"  onclick="add">
+                        <i class="fa fa-plus"></i>
+                        إنشاء
+                    </button>
+
+
+                
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+    <script>
+
+
+        function add() {
+            var rolename = document.getElementById('role').value;
+            var name1 = document.getElementById('name').value;
+            var email1 = document.getElementById('email').value;
+            var pass1 = document.getElementById('pass').value;
+
+            $.post("/Account/creat", { name:name1, email:email1, role: rolename, pass:pass1}, function (data) {
+
+                alert("added");
+
+            });
+        }
+        function test(){
+            var name = document.getElementById('role').value;
+            alert(name);
+
+        }
+
+        function getroles() {
+
+            $.get("/Account/listofrole", function (data) {
+                console.log(data);
+                var select = document.getElementById("role");
+                select.innerHTML = "  <option>الرجاء اختيار السماحية</option>";
+                // var option="";
+                for (var i = 0; i < data.length; i++) {
+                    // alert(data[i].subTypeArName);
+                    var option = document.createElement("option");
+                    option.text = data[i].name;
+                    option.value = data[i].name;
+                    select.appendChild(option);
+                    //   document.getElementById('cat').innerHTML()
+
+                }
+
+
+
+
+
+            });
+
+
+        }
+
+
+        $(document).ready(function () {
+            getroles();
+
+        });
+    </script>
+        }

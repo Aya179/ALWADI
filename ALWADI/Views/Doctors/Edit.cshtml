@@ -1,0 +1,214 @@
+﻿@model ALWADI.Models.Doctor
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+
+<hr />
+<div class="row">
+    <div class="col-12">
+
+        <div class="card card-secondary border-0">
+            <div class="card-header " style="background-color: #17a2b8; ">
+                <h3 class="card-title">تعديل</h3>
+
+
+                <div class="d-inline">
+                    <a asp-action="Index"><i class="fa fa-arrow-left fa-lg"></i> </a>
+                </div>
+
+            </div>
+
+            <form asp-action="Edit" enctype="multipart/form-data" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="DoctorId" id="DoctorId" />
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-5">
+                            <div class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="DoctorName" class="control-label">@Html.DisplayNameFor(model => model.DoctorName)</label>
+                                <input asp-for="DoctorName" class="form-control" />
+                                <span asp-validation-for="DoctorName" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="DoctorAddrress" class="control-label">@Html.DisplayNameFor(model => model.DoctorAddrress)</label>
+                                <input asp-for="DoctorAddrress" class="form-control" />
+                                <span asp-validation-for="DoctorAddrress" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DoctorPhone" class="control-label">@Html.DisplayNameFor(model => model.DoctorPhone)</label>
+                                <input asp-for="DoctorPhone" class="form-control" />
+                                <span asp-validation-for="DoctorPhone" class="text-danger"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label asp-for="DoctorEmail" class="control-label"> @Html.DisplayNameFor(model => model.DoctorEmail)</label>
+                                <input asp-for="DoctorEmail" class="form-control" />
+                                <span asp-validation-for="DoctorEmail" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group ">
+                                <label asp-for="clincLocation" class="control-label"> @Html.DisplayNameFor(model => model.clincLocation)</label>
+                                <select asp-for="clincLocation" asp-items="ViewBag.location" class="form-control"></select>
+                                <span asp-validation-for="clincLocation" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DepartmentNum" class="control-label"> @Html.DisplayNameFor(model => model.DepartmentNum)</label>
+                                <select asp-for="DepartmentNum" class="form-control" asp-items="ViewBag.DepartmentNum"></select>
+                                <span asp-validation-for="DoctorSpecialization" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                        <div class="col-5">
+
+                           <div class="form-group">
+                                <label asp-for="reversedCost" class="control-label">@Html.DisplayNameFor(Model=>Model.reversedCost)</label>
+                                <input asp-for="reversedCost" class="form-control" />
+                                <span asp-for="reversedCost" class="text-danger"></span>
+        </div>
+
+                            <div class="form-group">
+                                <label asp-for="CostPerPatient" class="control-label">@Html.DisplayNameFor(Model=>Model.CostPerPatient)</label>
+                                <input asp-for="CostPerPatient" class="form-control" />
+                                <span asp-for="CostPerPatient" class="text-danger"></span>
+                            </div>
+
+
+                           <div class="form-group justify-content-center" hidden>
+            <label asp-for="DoctorGender" class="control-label">الجنس</label>
+            <select  class="form-control">
+                <option value="">ذكر</option>
+                <option value="">أنثى</option>
+
+            </select>
+            <span class="text-danger"></span>
+
+        </div>
+
+                            <div class="form-group">
+                                <label asp-for="DoctorGender" class="control-label">@Html.DisplayNameFor(model => model.DoctorGender)</label>
+                                <input class="form-control" asp-for="DoctorGender" type="text" readonly />
+                                <span asp-validation-for="DoctorGender" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="DoctorCertificate" class="control-label">@Html.DisplayNameFor(model => model.DoctorCertificate)</label>
+                                <input asp-for="DoctorCertificate" class="form-control" />
+                                <span asp-validation-for="DoctorCertificate" class="text-danger"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label asp-for="WorkExperience" class="control-label"> @Html.DisplayNameFor(model => model.WorkExperience)</label>
+                                <input asp-for="WorkExperience" class="form-control" />
+                                <span asp-validation-for="WorkExperience" class="text-danger"></span>
+                            </div>
+                          
+
+                             <div class="form-group " hidden>
+                                <label asp-for="DoctorSpecialization" class="control-label"> @Html.DisplayNameFor(model => model.DoctorSpecialization)</label>
+                                <input asp-for="DoctorSpecialization" class="form-control" />
+                                <span asp-validation-for="DoctorSpecialization" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group ">
+                                <label asp-for="DoctorImg" class="control-label"> @Html.DisplayNameFor(model => model.DoctorImg)</label>
+                                <input class="form-control" type="file" name="DoctorImg" id="DoctorImg" multiple="multiple" />
+
+
+                                <span asp-validation-for="DoctorImg" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Descreption" class="control-label">@Html.DisplayNameFor(model => model.Descreption)</label>
+                                <textarea asp-for="Descreption" class="form-control" type="text"></textarea>
+                                <span asp-validation-for="Descreption" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                       <div class="col-6 mx-auto">
+                            
+                        </div>
+
+@*                        <div class="form-group " >
+                            <label asp-for="DoctorImg" class="control-label"> </label>
+                            <input class="form-control" type="file" id="imgInput" multiple="multiple" />
+                        </div>
+                        *@
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-primary">
+                        <i class="fa fa-plus"></i>
+                        حفظ
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+
+
+@*    <script>
+
+
+
+        document.getElementById('imgInput').addEventListener('change', function (e) {
+            if (e.target.files[0]) {
+                 var doctorId = document.getElementById('DoctorId').value;
+
+                const inputImg = document.getElementById('imgInput');
+                const file = event.target.result;
+                            alert(doctorId);
+
+                console.log(file);
+               // let url = window.URL.createObjectURL(file);
+
+
+
+                $.post("/Doctors/EditImg", { id: doctorId, Img: file }, function (data) {
+
+
+
+                //    //    // alert("doctorId");
+
+   });
+            }
+        });
+       $(document).ready(function () {
+            var doctorId = document.getElementById('DoctorId').value;
+           // alert(doctorId);
+               });
+
+
+
+
+        //function editImg(){
+        //    var doctorId = document.getElementById('DoctorId').value;
+        //    const inputImg = document.getElementById('imgInput');
+        //    const file = event.target.files[0];
+        //    let url = window.URL.createObjectURL(file);
+
+        //     console.log(url);
+            
+        //    //$.post("/Doctors/EditImg", { id:doctorId , Img: file }, function (data) {
+
+
+
+        //    //    // alert("doctorId");
+
+
+        //    //    });
+        //}
+    </script>
+*@ 
+
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

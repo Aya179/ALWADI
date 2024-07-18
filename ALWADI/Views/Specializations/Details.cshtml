@@ -1,0 +1,86 @@
+﻿@model ALWADI.Models.Specialization
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row" style="margin-top:10px;">
+    <div class="col-12">
+
+        <div class="card card-success border-0">
+            <div class="card-header">
+                <h3 class="card-title">معلومات التخصص</h3>
+
+
+                <div class="d-inline">
+                    <a asp-action="Index"><i class="fa fa-arrow-left fa-lg"></i> </a>
+                </div>
+
+            </div>
+
+            <form>
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-5">
+                            <div class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="SpecializationName" class="control-label">@Html.DisplayNameFor(model => model.SpecializationName)</label>
+                                <input asp-for="SpecializationName" class="form-control" readonly/>
+                                <span asp-validation-for="SpecializationName" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="SpecializationDescription" class="control-label">@Html.DisplayNameFor(model => model.SpecializationDescription)</label>
+                                <input asp-for="SpecializationDescription" class="form-control" readonly/>
+                                <span asp-validation-for="SpecializationDescription" class="text-danger"></span>
+                            </div>
+                            
+
+
+
+
+                        </div>
+                        <div class="col-5">
+                            @*<div class="form-group">
+                                <label asp-for="SessionDuration" class="control-label">@Html.DisplayNameFor(model => model.SessionDuration)</label>
+                                <input asp-for="SessionDuration" class="form-control" />
+                                <span asp-validation-for="SessionDuration" class="text-danger"></span>
+                            </div>*@
+
+
+                            
+
+                            <div class="form-group justify-content ">
+                                <label asp-for="DepNum" class="control-label">@Html.DisplayNameFor(model => model.DepNum)</label>
+                                <input asp-for="DepNumNavigation.DepartmentName" class="form-control" readonly />
+                                <span asp-validation-for="DepNum" class="text-danger"></span>
+                            </div>
+
+
+                           
+
+
+
+
+
+                        </div>
+
+                        <div class="col-6 mx-auto">
+
+                            <div class="form-group ">
+                                <label asp-for="Specializationmg" class="control-label"> @Html.DisplayNameFor(model => model.Specializationmg)</label><br />
+
+                                <img src="@ViewBag.ImageDataUrl" width="300" height="300" style="border-radius: 8px;" />
+
+                                <span asp-validation-for="Specializationmg" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

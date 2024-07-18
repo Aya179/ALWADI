@@ -1,0 +1,99 @@
+﻿@model ALWADI.Models.Advertisement
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<hr />
+<div class="row">
+    <div class="col-12">
+
+        <div class="card card-secondary border-0">
+            <div class="card-header " style="background-color: #17a2b8; ">
+                <h3 class="card-title">تعديل معلومات المريض</h3>
+
+
+                <div class="d-inline">
+                    <a asp-action="Index"><i class="fa fa-arrow-left fa-lg"></i> </a>
+                </div>
+
+            </div>
+
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="id" />
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-5">
+                            <div class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="client_id" class="control-label">@Html.DisplayNameFor(model => model.client_id)</label>
+                                <select asp-for="client_id" asp-items="ViewBag.client_id" class="form-control"></select>
+                                <span asp-validation-for="client_id" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="Ads_category_id" class="control-label">@Html.DisplayNameFor(model => model.Ads_category_id)</label>
+                                <select asp-for="Ads_category_id" asp-items="ViewBag.Ads_category_id" class="form-control"></select>
+                                <span asp-validation-for="Ads_category_id" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="URL" class="control-label">@Html.DisplayNameFor(model => model.URL)</label>
+                                <input asp-for="URL" class="form-control" />
+                                <span asp-validation-for="URL" class="text-danger"></span>
+                            </div>
+                          
+
+
+
+
+                        </div>
+                        <div class="col-5">
+
+
+                            <div class="form-group">
+                                <label asp-for="Ads_StartDate" class="control-label">@Html.DisplayNameFor(model => model.Ads_StartDate)</label>
+                                <input class="form-control" asp-for="Ads_StartDate" type="text" />
+                                <span asp-validation-for="Ads_StartDate" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Ads_place" class="control-label">@Html.DisplayNameFor(model => model.Ads_place)</label>
+                                <input asp-for="Ads_place" class="form-control" />
+                                <span asp-validation-for="Ads_place" class="text-danger"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label asp-for="Ads_profit" class="control-label"> @Html.DisplayNameFor(model => model.Ads_profit)</label>
+                                <input asp-for="Ads_profit" class="form-control" />
+                                <span asp-validation-for="Ads_profit" class="text-danger"></span>
+                            </div>
+                            
+
+
+
+
+
+                        </div>
+
+                        
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-primary">
+                        <i class="fa fa-plus"></i>
+                        ـعديل
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

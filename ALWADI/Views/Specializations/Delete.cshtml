@@ -1,0 +1,87 @@
+﻿@model ALWADI.Models.Specialization
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3 style="margin-top:10px;">هل أنت متأكد من حذف المعلومات التالية؟</h3>
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card card-danger border-0">
+            <div class="card-header">
+                <h3 class="card-title">حذف طبيب</h3>
+
+
+                <div class="d-inline">
+                    <a asp-action="Index"><i class="fa fa-arrow-left fa-lg"></i> </a>
+                </div>
+
+            </div>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="SpecializationId" />
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-5">
+                            <div class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="SpecializationName" class="control-label">@Html.DisplayNameFor(model => model.SpecializationName)</label>
+                                <input asp-for="SpecializationName" class="form-control" />
+                                <span asp-validation-for="SpecializationName" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="SpecializationDescription" class="control-label">@Html.DisplayNameFor(model => model.SpecializationDescription)</label>
+                                <input asp-for="SpecializationDescription" class="form-control" />
+                                <span asp-validation-for="SpecializationDescription" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group ">
+                                <label asp-for="DepNum" class="control-label"> @Html.DisplayNameFor(model => model.DepNum)</label>
+                                <input asp-for="DepNumNavigation.DepartmentName" class="form-control" />
+                                <span asp-validation-for="DepNum" class="text-danger"></span>
+                            </div>
+
+
+
+                        </div>
+                        <div class="col-5">
+
+                            <div class="form-group" hidden>
+                                <label asp-for="Specializationmg" class="control-label">@Html.DisplayNameFor(model => model.Specializationmg)</label>
+                                <input asp-for="Specializationmg" class="form-control" />
+                                <span asp-validation-for="Specializationmg" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group" hidden>
+                                <label asp-for="SessionDuration" class="control-label">@Html.DisplayNameFor(model => model.SessionDuration)</label>
+                                <input asp-for="SessionDuration" class="form-control" />
+                                <span asp-validation-for="SessionDuration" class="text-danger"></span>
+                            </div>
+                            
+
+
+
+
+
+                        </div>
+
+
+
+                       
+
+                    </div>
+                </div>
+                <div class="card-footer">
+
+                    <input type="submit" value="حذف" class="btn btn-danger" />
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

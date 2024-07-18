@@ -1,0 +1,127 @@
+﻿@model ALWADI.Models.Client
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card card-danger border-0">
+            <div class="card-header">
+                <h3 class="card-title">هل أنت متأكد من حذف المعلومات التالية؟</h3>
+
+
+                <div class="d-inline">
+                    <a asp-action=""><i class="fa fa-arrow-left fa-lg"></i> </a>
+                </div>
+
+            </div>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="clientId" />
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-5">
+                            <div class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="clientname" class="control-label">@Html.DisplayNameFor(model => model.clientname)</label>
+                                <input asp-for="clientname" class="form-control" />
+                                <span asp-validation-for="clientname" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="phone" class="control-label">@Html.DisplayNameFor(model => model.phone)</label>
+                                <input asp-for="phone" class="form-control" />
+                                <span asp-validation-for="phone" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="email" class="control-label">@Html.DisplayNameFor(model => model.email)</label>
+                                <input asp-for="email" class="form-control" />
+                                <span asp-validation-for="email" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                        <div class="col-5">
+                            <div class="form-group">
+                                <label asp-for="address" class="control-label">@Html.DisplayNameFor(model => model.address)</label>
+                                <input asp-for="address" class="form-control" />
+                                <span asp-validation-for="address" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="company" class="control-label">@Html.DisplayNameFor(model => model.company)</label>
+                                <input asp-for="company" class="form-control" />
+                                <span asp-validation-for="company" class="text-danger"></span>
+                            </div>
+
+                        </div>
+
+
+
+                       
+                    </div>
+                </div>
+                <div class="card-footer">
+
+                    <input type="submit" value="حذف" class="btn btn-danger" />
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@*<dt class="col-sm-2">
+    
+</dt>
+<dd class="col-sm-10">
+   
+</dd>
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(model => model.phone)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(model => model.phone)
+</dd>
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(model => model.email)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(model => model.email)
+</dd>
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(model => model.address)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(model => model.address)
+</dd>
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(model => model.company)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(model => model.company)
+</dd>
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(model => model.client_profit)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(model => model.client_profit)
+</dd>
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(model => model.Is_deleted)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(model => model.Is_deleted)
+</dd>
+    </dl>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="clientId" />
+    <input type="submit" value="Delete" class="btn btn-danger" /> |
+    <a asp-action="Index">Back to List</a>
+</form>
+</div>*@

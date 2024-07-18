@@ -1,0 +1,222 @@
+﻿
+@model IEnumerable<ALWADI.Models.AppointmentGet>
+@*<style>
+        tbody {
+            font-family: 'Arabic Typesetting';
+            font-size: x-large;
+        }
+
+        thead {
+            white-space: nowrap;
+            color: red;
+            font-family: 'Arabic Typesetting';
+            font-size: x-large;
+        }
+    </style>*@
+
+
+
+
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@ViewBag.count</h3>
+
+
+                        <p>إجمالي حصة المركز</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3><sup style="font-size: 20px">@ViewBag.count1
+                            </sup></h3>
+
+                        <p>إجمالي حصة الطبيب</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>@ViewBag.count2
+                        </h3>
+
+                        <p>إجمالي حصة الموقع</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+
+            <!-- ./col -->
+        </div>
+
+    </div><!-- /.container-fluid -->
+
+</section>
+
+
+
+
+
+
+
+
+<div class="card-body">
+
+
+    <div class="card-header">
+        <h3 class="card-title">
+            @*نتائج البحث عن : @ViewBag.keywords<br />*@
+            عددالدفعات : @ViewBag.count3
+
+
+        </h3>
+
+
+        <div class="d-inline">
+            <a asp-action="Index"><i class="fa fa-arrow-left fa-lg"></i> back</a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+
+
+        <table class="table table-striped" id="dep_table">
+            <thead>
+                <tr>
+                    <th style="text-align: center;">
+                        @Html.DisplayNameFor(model => model.payId)
+                    </th>
+
+                    @*<th style="text-align: center;">
+                            @Html.DisplayNameFor(model => model.appId)
+                        </th>*@
+                    <th style="text-align: center;">
+                        @Html.DisplayNameFor(model => model.centerCost)
+                    </th>
+                    <th style="text-align: center;">
+                        @Html.DisplayNameFor(model => model.doctorCost)
+                    </th>
+                    <th style="text-align: center;">
+                        @Html.DisplayNameFor(model => model.webCost)
+                    </th>
+                    <th style="text-align: center;">
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                    <th style="text-align: center;">
+                        @Html.DisplayNameFor(model => model.paidedFor)
+                    </th>
+
+
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="text-align: center;">
+                            @item.payId
+                        </td>
+                        @*<td style="text-align: center;">
+                                @item. appId
+                            </td>*@
+                        <td style="text-align: center;">
+                            @item.centerCost
+                        </td>
+                        <td style="text-align: center;">
+                            @item.doctorCost
+                        </td>
+                        <td style="text-align: center;">
+                            @item.webCost
+                        </td>
+                        <td style="text-align: center;">
+                            @item.Date.Value.Date.ToShortDateString()
+                        </td>
+                        <td style="text-align: center;">
+                            @item.paidedFor
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+<div class="card-footer">
+    <div class="col col-md-6 ">
+        <button type="button" id="export_button" class="btn btn-success btn-sm">Export</button>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(function () {
+            $('#dep_table').DataTable({
+                "lengthMenu": [[5, 10, 15, 20, 25, -1], [5, 10, 15, 20, 25, "All"]],
+                "responsive": true,
+                "autoWidth": true,
+                "filter": false,
+
+                "language": {
+                    "sProcessing": "جارٍ التحميل...",
+                    "sLengthMenu": "أظهر _MENU_ مدخلات",
+                    "sZeroRecords": "لم يتم العثور على أية نتائج",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sInfoPostFix": "",
+                    /*"sSearch": "البحث:",*/
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+                }
+            });
+        });
+        function html_table_to_excel(type) {
+            var data = document.getElementById('dep_table');
+
+            var file = XLSX.utils.table_to_book(data, { sheet: "sheet1" });
+
+            XLSX.write(file, { bookType: type, bookSST: true, type: 'base64' });
+
+            XLSX.writeFile(file, 'file.' + type);
+        }
+
+        const export_button = document.getElementById('export_button');
+
+        export_button.addEventListener('click', () => {
+            html_table_to_excel('xlsx');
+        });
+
+
+
+
+    </script>
+}
+
+
+
